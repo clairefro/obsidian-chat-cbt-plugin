@@ -1,0 +1,11 @@
+{
+  "id": "chat-cbt",
+  "name": "ChatCBT",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Guides you in reframing negative thoughts and keeping record of your discoveries",
+  "author": "Claire Froelich",
+  "authorUrl": "https://github.com/clairefro",
+  "fundingUrl": "https://www.buymeacoffee.com/app/dashboard",
+  "isDesktopOnly": false
+}
