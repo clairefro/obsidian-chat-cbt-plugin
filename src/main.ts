@@ -104,9 +104,11 @@ export default class ChatCbtPlugin extends Plugin {
       name: "Chat with ChatCBT",
       editorCallback: async (editor: Editor, view: MarkdownView) => {
         const text = view.editor.getValue();
+        // parse into convo
         console.log(text);
       },
     });
+
     // This adds an editor command that can perform some operation on the current editor instance
     this.addCommand({
       id: "chatcbt-summarize",
