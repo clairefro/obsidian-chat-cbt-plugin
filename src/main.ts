@@ -218,7 +218,7 @@ class MySettingTab extends PluginSettingTab {
           .setPlaceholder("Enter your API Key")
           .setValue(crypt.decrypt(this.plugin.settings.openAiApiKey))
           .onChange(async (value) => {
-            this.plugin.settings.openAiApiKey = crypt.encrypt(value);
+            this.plugin.settings.openAiApiKey = crypt.encrypt(value.trim());
             await this.plugin.saveSettings();
           })
       );
