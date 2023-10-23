@@ -9,6 +9,7 @@ import {
   Setting,
   Menu,
 } from "obsidian";
+import { crypt } from "./util/crypt";
 
 /** Interfaces */
 
@@ -17,7 +18,7 @@ interface MyPluginSettings {
 }
 
 const DEFAULT_SETTINGS: MyPluginSettings = {
-  openAiApiKey: "default",
+  openAiApiKey: "",
 };
 
 export default class ChatCbtPlugin extends Plugin {
@@ -215,9 +216,9 @@ class MySettingTab extends PluginSettingTab {
       .addText((text) =>
         text
           .setPlaceholder("Enter your API Key")
-          .setValue(this.plugin.settings.openAiApiKey)
+          .setValue(crypt.decrypt(this.plugin.settings.openAiApiKey))
           .onChange(async (value) => {
-            this.plugin.settings.openAiApiKey = value;
+            this.plugin.settings.openAiApiKey = crypt.encrypt(value);
             await this.plugin.saveSettings();
           })
       );
