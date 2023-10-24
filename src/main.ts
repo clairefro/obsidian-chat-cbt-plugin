@@ -10,9 +10,10 @@ import {
   Menu,
 } from "obsidian";
 import { crypt } from "./util/crypt";
-
+import { ChatCbt } from "./util/chatcbt";
 /** Interfaces */
 
+const chatCbt = new ChatCbt();
 interface MyPluginSettings {
   openAiApiKey: string;
 }
@@ -71,10 +72,30 @@ export default class ChatCbtPlugin extends Plugin {
 
         menu.addItem((item) =>
           item
-            .setTitle("Copy")
-            .setIcon("documents")
-            .onClick(() => {
-              new Notice("Copied");
+            .setTitle("Chat")
+            .setIcon("message-circle")
+            .onClick(async () => {
+              new Notice("Asking ChatCBT...");
+              const activeFile = this.app.workspace.getActiveFile();
+              if (!activeFile) {
+                return;
+              }
+
+              const existingText = await this.app.vault.read(activeFile);
+
+              // TODO: PARSE FILE FOR MESSAGES/ temporarily just reading whole doc
+              const res = await chatCbt.chat(
+                crypt.decrypt(this.settings.openAiApiKey),
+                [
+                  {
+                    role: "user",
+                    content: existingText,
+                  },
+                ]
+              );
+              await this.app.vault.append(activeFile, res);
+
+              console.log(res);
             })
         );
 
