@@ -74,28 +74,8 @@ export default class ChatCbtPlugin extends Plugin {
           item
             .setTitle("Chat")
             .setIcon("message-circle")
-            .onClick(async () => {
-              new Notice("Asking ChatCBT...");
-              const activeFile = this.app.workspace.getActiveFile();
-              if (!activeFile) {
-                return;
-              }
-
-              const existingText = await this.app.vault.read(activeFile);
-
-              // TODO: PARSE FILE FOR MESSAGES/ temporarily just reading whole doc
-              const res = await chatCbt.chat(
-                crypt.decrypt(this.settings.openAiApiKey),
-                [
-                  {
-                    role: "user",
-                    content: existingText,
-                  },
-                ]
-              );
-              await this.app.vault.append(activeFile, res);
-
-              console.log(res);
+            .onClick(() => {
+              this.getChatCbtRepsonse();
             })
         );
 
@@ -199,6 +179,25 @@ export default class ChatCbtPlugin extends Plugin {
 
   async saveSettings() {
     await this.saveData(this.settings);
+  }
+
+  async getChatCbtRepsonse() {
+    new Notice("Asking ChatCBT...");
+    const activeFile = this.app.workspace.getActiveFile();
+    if (!activeFile) {
+      return;
+    }
+
+    const existingText = await this.app.vault.read(activeFile);
+
+    // TODO: PARSE FILE FOR MESSAGES/ temporarily just reading whole doc
+    const res = await chatCbt.chat(crypt.decrypt(this.settings.openAiApiKey), [
+      {
+        role: "user",
+        content: existingText,
+      },
+    ]);
+    await this.app.vault.append(activeFile, res);
   }
 }
 
