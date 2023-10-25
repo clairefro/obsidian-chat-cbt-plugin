@@ -182,7 +182,6 @@ export default class ChatCbtPlugin extends Plugin {
   }
 
   async getChatCbtRepsonse() {
-    new Notice("Asking ChatCBT...");
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
       return;
@@ -191,13 +190,22 @@ export default class ChatCbtPlugin extends Plugin {
     const existingText = await this.app.vault.read(activeFile);
 
     // TODO: PARSE FILE FOR MESSAGES/ temporarily just reading whole doc
-    const res = await chatCbt.chat(crypt.decrypt(this.settings.openAiApiKey), [
-      {
-        role: "user",
-        content: existingText,
-      },
-    ]);
-    await this.app.vault.append(activeFile, res);
+    try {
+      new Notice("Asking ChatCBT...");
+      const res = await chatCbt.chat(
+        crypt.decrypt(this.settings.openAiApiKey),
+        [
+          {
+            role: "user",
+            content: existingText,
+          },
+        ]
+      );
+      await this.app.vault.append(activeFile, res);
+    } catch (e) {
+      new Notice("ChatCBT failed :(");
+      console.error(e);
+    }
   }
 }
 
