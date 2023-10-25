@@ -19,7 +19,6 @@ export class ChatCbt {
       messages: [SYSTEM_MSG, ...messages],
       temperature: 0.7,
     };
-    console.log({ data });
 
     const headers = {
       headers: {

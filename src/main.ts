@@ -12,6 +12,8 @@ import {
 import { crypt } from "./util/crypt";
 import { ChatCbt } from "./util/chatcbt";
 /** Interfaces */
+const CHAT_AGENT_MARKER = "**ChatCBT:**";
+const CHAT_DELIMETER = "\n\n---\n\n";
 
 const chatCbt = new ChatCbt();
 interface MyPluginSettings {
@@ -159,7 +161,7 @@ export default class ChatCbtPlugin extends Plugin {
     // If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
     // Using this function will automatically remove the event listener when this plugin is disabled.
     this.registerDomEvent(document, "click", (evt: MouseEvent) => {
-      console.log("click", evt);
+      //   console.log("click", evt);
     });
 
     // When registering intervals, this function will automatically clear the interval when the plugin is disabled.
@@ -188,8 +190,11 @@ export default class ChatCbtPlugin extends Plugin {
     }
 
     const existingText = await this.app.vault.read(activeFile);
+    console.log(existingText);
 
     // TODO: PARSE FILE FOR MESSAGES/ temporarily just reading whole doc
+    let response = "";
+
     try {
       new Notice("Asking ChatCBT...");
       const res = await chatCbt.chat(
@@ -201,10 +206,16 @@ export default class ChatCbtPlugin extends Plugin {
           },
         ]
       );
-      await this.app.vault.append(activeFile, res);
+      response = res;
     } catch (e) {
       new Notice("ChatCBT failed :(");
       console.error(e);
+    }
+
+    if (response) {
+      const appendMsg =
+        CHAT_DELIMETER + `${CHAT_AGENT_MARKER} ${response}` + CHAT_DELIMETER;
+      await this.app.vault.append(activeFile, appendMsg);
     }
   }
 }
