@@ -99,14 +99,14 @@ export default class ChatCbtPlugin extends Plugin {
             })
         );
 
-        menu.addItem((item) =>
-          item
-            .setTitle("Paste")
-            .setIcon("paste")
-            .onClick(() => {
-              new Notice("Pasted");
-            })
-        );
+        // menu.addItem((item) =>
+        //   item
+        //     .setTitle("Paste")
+        //     .setIcon("paste")
+        //     .onClick(() => {
+        //       new Notice("Pasted");
+        //     })
+        // );
 
         menu.showAtMouseEvent(evt);
         // menu.showAtPosition({ x: 20, y: 20 });
