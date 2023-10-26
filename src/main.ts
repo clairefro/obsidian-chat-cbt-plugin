@@ -198,7 +198,6 @@ export default class ChatCbtPlugin extends Plugin {
       .map((i) => i.trim())
       .map((i) => convertTextToMsg(i));
 
-    // TODO: PARSE FILE FOR MESSAGES/ temporarily just reading whole doc
     let response = "";
 
     try {
