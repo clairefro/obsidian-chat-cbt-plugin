@@ -11,10 +11,8 @@ import {
 } from "obsidian";
 import { crypt } from "./util/crypt";
 import { ChatCbt } from "./util/chatcbt";
+import { buildAssistantMsg, convertTextToMsg } from "./util/messages";
 /** Interfaces */
-const CHAT_AGENT_MARKER = "**ChatCBT:**";
-const CHAT_DELIMETER = "\n\n---\n\n";
-
 const chatCbt = new ChatCbt();
 interface MyPluginSettings {
   openAiApiKey: string;
@@ -190,7 +188,15 @@ export default class ChatCbtPlugin extends Plugin {
     }
 
     const existingText = await this.app.vault.read(activeFile);
-    console.log(existingText);
+    if (!existingText.trim()) {
+      new Notice("First, tell how you are feeling");
+      return;
+    }
+
+    const messages = existingText
+      .split(/---+/)
+      .map((i) => i.trim())
+      .map((i) => convertTextToMsg(i));
 
     // TODO: PARSE FILE FOR MESSAGES/ temporarily just reading whole doc
     let response = "";
@@ -199,12 +205,7 @@ export default class ChatCbtPlugin extends Plugin {
       new Notice("Asking ChatCBT...");
       const res = await chatCbt.chat(
         crypt.decrypt(this.settings.openAiApiKey),
-        [
-          {
-            role: "user",
-            content: existingText,
-          },
-        ]
+        messages
       );
       response = res;
     } catch (e) {
@@ -213,8 +214,7 @@ export default class ChatCbtPlugin extends Plugin {
     }
 
     if (response) {
-      const appendMsg =
-        CHAT_DELIMETER + `${CHAT_AGENT_MARKER} ${response}` + CHAT_DELIMETER;
+      const appendMsg = buildAssistantMsg(response);
       await this.app.vault.append(activeFile, appendMsg);
     }
   }
