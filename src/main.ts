@@ -79,6 +79,18 @@ export default class ChatCbtPlugin extends Plugin {
             })
         );
 
+		// menu.addItem((item) =>
+        //   item
+        //     .setTitle("settin")
+        //     .setIcon("message-circle")
+        //     .onClick(async() => {
+		// 		const tabs = await chatCbt.usage(
+		// 			crypt.decrypt(this.settings.openAiApiKey))
+		// 		console.log({tabs})
+		// 		// this.app.setting.open()
+        //     })
+        // );
+
         // menu.addItem((item) =>
         //   item
         //     .setTitle("Paste")
@@ -144,8 +156,8 @@ export default class ChatCbtPlugin extends Plugin {
           // If checking is true, we're simply "checking" if the command can be run.
           // If checking is false, then we want to actually perform the operation.
           if (!checking) {
-            new SampleModal(this.app).open();
-          }
+			// foo
+		  }
 
           // This command will only show up in Command Palette when the check function returns true
           return true;
@@ -216,22 +228,6 @@ export default class ChatCbtPlugin extends Plugin {
       const appendMsg = buildAssistantMsg(response);
       await this.app.vault.append(activeFile, appendMsg);
     }
-  }
-}
-
-class SampleModal extends Modal {
-  constructor(app: App) {
-    super(app);
-  }
-
-  onOpen() {
-    const { contentEl } = this;
-    contentEl.setText("Woah");
-  }
-
-  onClose() {
-    const { contentEl } = this;
-    contentEl.empty();
   }
 }
 
