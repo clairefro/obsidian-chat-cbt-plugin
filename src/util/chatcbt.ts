@@ -31,19 +31,4 @@ export class ChatCbt {
 
     return response.data.choices[0].message.content;
   }
-
-  async usage(apiKey: string, date: string /* YYYY-MM-DD */) {
-	const url = `https://api.openai.com/v1/usage?date=${date}`;
-
-    const headers = {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    };
-
-    const response: { data: { choices: { message: { content: string } }[] } } =
-      await axios.get(url, headers);
-
-    return response.data;
-  }
 }

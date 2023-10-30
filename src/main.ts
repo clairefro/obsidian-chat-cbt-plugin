@@ -66,8 +66,6 @@ export default class ChatCbtPlugin extends Plugin {
       "ChatCBT",
       (evt: MouseEvent) => {
         // Called when the user clicks the icon.
-        // TODO: remove
-        // new Notice("Barrr");
 
         const menu = new Menu();
 
@@ -126,8 +124,8 @@ export default class ChatCbtPlugin extends Plugin {
 
     // This adds an editor command that can perform some operation on the current editor instance
     this.addCommand({
-      id: "chatcbt-summarize",
-      name: "Summarize takeaways from conversation",
+      id: "chatcbt-chat",
+      name: "Submit the text in the active tab to ChatCBT",
       editorCallback: (editor: Editor, view: MarkdownView) => {
         console.log(editor.getSelection());
         console.log(view);
