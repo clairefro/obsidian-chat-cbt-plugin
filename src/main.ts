@@ -12,6 +12,7 @@ import {
 import { crypt } from "./util/crypt";
 import { ChatCbt } from "./util/chatcbt";
 import { buildAssistantMsg, convertTextToMsg } from "./util/messages";
+
 /** Interfaces */
 const chatCbt = new ChatCbt();
 interface MyPluginSettings {
@@ -210,6 +211,10 @@ export default class ChatCbtPlugin extends Plugin {
       .map((i) => i.trim())
       .map((i) => convertTextToMsg(i));
 
+
+	const loadingModal = new TextModel(this.app, "Asking...");
+	loadingModal.open()
+
     let response = "";
 
     try {
@@ -222,7 +227,9 @@ export default class ChatCbtPlugin extends Plugin {
     } catch (e) {
       new Notice("ChatCBT failed :(");
       console.error(e);
-    }
+    } finally {
+	  loadingModal.close()
+	}
 
     if (response) {
       const appendMsg = buildAssistantMsg(response);
@@ -258,3 +265,22 @@ class MySettingTab extends PluginSettingTab {
       );
   }
 }
+
+
+class TextModel extends Modal {
+	text: string
+	constructor(app: App, _text:string) {
+	  super(app);
+	  this.text = _text;
+	}
+  
+	onOpen() {
+	  const { contentEl } = this;
+	  contentEl.setText(this.text);
+	}
+  
+	onClose() {
+	  const { contentEl } = this;
+	  contentEl.empty();
+	}
+  }
