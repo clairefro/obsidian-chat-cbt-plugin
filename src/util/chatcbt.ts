@@ -1,22 +1,30 @@
 import axios from "axios";
 import systemPrompt from "../prompts/system";
+import summaryPrompt from "../prompts/summary";
 
-interface Message {
+export interface Message {
   role: string;
   content: string;
 }
 
 const SYSTEM_MSG = { role: "system", content: systemPrompt };
+const SUMMARY_MSG = { role: "user", content: summaryPrompt };
 
 export class ChatCbt {
   constructor() {}
 
-  async chat(apiKey: string, messages: Message[]): Promise<string> {
+  async chat(apiKey: string, messages: Message[], isSummary: boolean = false): Promise<string> {
     const url = "https://api.openai.com/v1/chat/completions";
+
+	const resolvedMsgs = [SYSTEM_MSG, ...messages]
+
+	if (isSummary){
+	  resolvedMsgs.push(SUMMARY_MSG)
+	}
 
     const data = {
       model: "gpt-3.5-turbo",
-      messages: [SYSTEM_MSG, ...messages],
+      messages: resolvedMsgs,
       temperature: 0.7,
     };
 

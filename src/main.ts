@@ -10,7 +10,7 @@ import {
   Menu,
 } from "obsidian";
 import { crypt } from "./util/crypt";
-import { ChatCbt } from "./util/chatcbt";
+import { ChatCbt, Message } from "./util/chatcbt";
 import { buildAssistantMsg, convertTextToMsg } from "./util/messages";
 
 /** Interfaces */
@@ -31,34 +31,6 @@ export default class ChatCbtPlugin extends Plugin {
 
     await this.loadSettings();
 
-    /* add option when you right click on item in file menu */
-    // this.registerEvent(
-    //   this.app.workspace.on("file-menu", (menu, file) => {
-    //     menu.addItem((item) => {
-    //       item
-    //         .setTitle("Print file path 👈")
-    //         .setIcon("document")
-    //         .onClick(async () => {
-    //           new Notice(file.path);
-    //         });
-    //     });
-    //   })
-    // );
-
-    /* add option when you right click on item in file menu */
-
-    this.registerEvent(
-      this.app.workspace.on("editor-menu", (menu, editor, view) => {
-        menu.addItem((item) => {
-          item
-            .setTitle("Print file path 👈")
-            .setIcon("document")
-            .onClick(async () => {
-              new Notice(view.file ? view.file.path : "<nothing>");
-            });
-        });
-      })
-    );
 
     // This creates an icon in the left ribbon.
     const ribbonIconEl = this.addRibbonIcon(
@@ -78,28 +50,22 @@ export default class ChatCbtPlugin extends Plugin {
             })
         );
 
+		menu.addItem((item) =>
+          item
+            .setTitle("Summarize")
+            .setIcon("table")
+            .onClick(() => {
+              this.getChatCbtSummary();
+            })
+        );
+
         menu.showAtMouseEvent(evt);
-        // menu.showAtPosition({ x: 20, y: 20 });
       }
     );
-
-    // Perform additional things with the ribbon
-    ribbonIconEl.addClass("my-plugin-ribbon-class");
 
     // This adds a status bar item to the bottom of the app. Does not work on mobile apps.
     const statusBarItemEl = this.addStatusBarItem();
     statusBarItemEl.setText("ChatCBT");
-
-    // This adds a simple command that can be triggered anywhere
-    this.addCommand({
-      id: "chatcbt-chat",
-      name: "Chat with ChatCBT",
-      editorCallback: async (editor: Editor, view: MarkdownView) => {
-        const text = view.editor.getValue();
-        // parse into convo
-        console.log(text);
-      },
-    });
 
     // This adds an editor command that can perform some operation on the current editor instance
     this.addCommand({
@@ -109,26 +75,15 @@ export default class ChatCbtPlugin extends Plugin {
 		this.getChatCbtRepsonse()
       },
     });
-    // This adds a complex command that can check whether the current state of the app allows execution of the command
-    this.addCommand({
-      id: "open-sample-modal-complex",
-      name: "Open sample modal (complex)",
-      checkCallback: (checking: boolean) => {
-        // Conditions to check
-        const markdownView =
-          this.app.workspace.getActiveViewOfType(MarkdownView);
-        if (markdownView) {
-          // If checking is true, we're simply "checking" if the command can be run.
-          // If checking is false, then we want to actually perform the operation.
-          if (!checking) {
-			// foo
-		  }
 
-          // This command will only show up in Command Palette when the check function returns true
-          return true;
-        }
-      },
-    });
+	this.addCommand({
+		id: "chatcbt-summarize",
+		name: "Summarize - create a table that summarizes reframed thoughts from your conversation",
+		editorCallback: (_editor: Editor, _view: MarkdownView) => {
+		  this.getChatCbtSummary()
+		},
+	  });
+
 
     // This adds a settings tab so the user can configure various aspects of the plugin
     this.addSettingTab(new MySettingTab(this.app, this));
@@ -158,7 +113,8 @@ export default class ChatCbtPlugin extends Plugin {
     await this.saveData(this.settings);
   }
 
-  async getChatCbtRepsonse() {
+
+  async getChatCbtRepsonse(isSummary: boolean = false) {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
       return;
@@ -171,7 +127,7 @@ export default class ChatCbtPlugin extends Plugin {
 
     const existingText = await this.app.vault.read(activeFile);
     if (!existingText.trim()) {
-      new Notice("First, tell how you are feeling");
+      new Notice("First, share how you are feeling");
       return;
     }
 
@@ -179,7 +135,7 @@ export default class ChatCbtPlugin extends Plugin {
       .split(/---+/)
       .map((i) => i.trim())
       .map((i) => convertTextToMsg(i));
-
+    
 
 	const loadingModal = new TextModel(this.app, "Asking...");
 	loadingModal.open()
@@ -190,7 +146,8 @@ export default class ChatCbtPlugin extends Plugin {
       new Notice("Asking ChatCBT...");
       const res = await chatCbt.chat(
         crypt.decrypt(this.settings.openAiApiKey),
-        messages
+        messages,
+		isSummary
       );
       response = res;
     } catch (e) {
@@ -205,9 +162,13 @@ export default class ChatCbtPlugin extends Plugin {
 	}
 
     if (response) {
-      const appendMsg = buildAssistantMsg(response);
+      const appendMsg = isSummary ? "\n\n" + response : buildAssistantMsg(response);
       await this.app.vault.append(activeFile, appendMsg);
     }
+  }
+
+  async getChatCbtSummary() {
+	await this.getChatCbtRepsonse(true)
   }
 }
 
