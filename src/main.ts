@@ -78,27 +78,6 @@ export default class ChatCbtPlugin extends Plugin {
             })
         );
 
-		// menu.addItem((item) =>
-        //   item
-        //     .setTitle("settin")
-        //     .setIcon("message-circle")
-        //     .onClick(async() => {
-		// 		const tabs = await chatCbt.usage(
-		// 			crypt.decrypt(this.settings.openAiApiKey))
-		// 		console.log({tabs})
-		// 		// this.app.setting.open()
-        //     })
-        // );
-
-        // menu.addItem((item) =>
-        //   item
-        //     .setTitle("Paste")
-        //     .setIcon("paste")
-        //     .onClick(() => {
-        //       new Notice("Pasted");
-        //     })
-        // );
-
         menu.showAtMouseEvent(evt);
         // menu.showAtPosition({ x: 20, y: 20 });
       }
@@ -125,22 +104,9 @@ export default class ChatCbtPlugin extends Plugin {
     // This adds an editor command that can perform some operation on the current editor instance
     this.addCommand({
       id: "chatcbt-chat",
-      name: "Submit the text in the active tab to ChatCBT",
-      editorCallback: (editor: Editor, view: MarkdownView) => {
-        console.log(editor.getSelection());
-        console.log(view);
-        // editor.replaceSelection("Sample Editor Command");
-        // console.log(editor.getSelection());
-        // console.log(view.file);
-        // editor.replaceSelection("Sample Editor Command");
-        // console.log(editor.lastLine());
-        // console.log(view.app);
-        // console.log(view);
-        // eslint-disable-next-line
-        // console.log(editor.getDoc().cm.viewState.state.doc.text.join("\n"));
-        // eslint-disable-next-line
-        console.log(editor.lastLine());
-        console.log(view.app);
+      name: "Chat - submit the text in the active tab to ChatCBT",
+      editorCallback: (_editor: Editor, _view: MarkdownView) => {
+		this.getChatCbtRepsonse()
       },
     });
     // This adds a complex command that can check whether the current state of the app allows execution of the command
@@ -198,6 +164,11 @@ export default class ChatCbtPlugin extends Plugin {
       return;
     }
 
+	if(!this.settings.openAiApiKey) {
+	  new Notice("Missing API Key - update in ChatCBT plugin settings");
+	  return
+	}
+
     const existingText = await this.app.vault.read(activeFile);
     if (!existingText.trim()) {
       new Notice("First, tell how you are feeling");
@@ -223,7 +194,11 @@ export default class ChatCbtPlugin extends Plugin {
       );
       response = res;
     } catch (e) {
-      new Notice("ChatCBT failed :(");
+		if(e.response.status === 401) {
+		  new Notice("Invalid API Key - update in ChatCBT plugin settings");
+		} else {
+		  new Notice("ChatCBT failed :(");
+		}
       console.error(e);
     } finally {
 	  loadingModal.close()
@@ -255,9 +230,13 @@ class MySettingTab extends PluginSettingTab {
       .addText((text) =>
         text
           .setPlaceholder("Enter your API Key")
-          .setValue(crypt.decrypt(this.plugin.settings.openAiApiKey))
+          .setValue(this.plugin.settings.openAiApiKey ? crypt.decrypt(this.plugin.settings.openAiApiKey): "")
           .onChange(async (value) => {
-            this.plugin.settings.openAiApiKey = crypt.encrypt(value.trim());
+			if (!value.trim()) {
+			  this.plugin.settings.openAiApiKey = ""
+			} else {
+			  this.plugin.settings.openAiApiKey = crypt.encrypt(value.trim());
+			}
             await this.plugin.saveSettings();
           })
       );
