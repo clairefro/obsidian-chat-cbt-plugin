@@ -206,7 +206,7 @@ class MySettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName("OpenAI API Key")
-      //   .setDesc("")
+      .setDesc("Create an OpenAI API Key from their website and paste here")
       .addText((text) =>
         text
           .setPlaceholder("Enter your API Key")

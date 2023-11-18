@@ -1,6 +1,6 @@
 # ChatCBT
 
-> An AI-powered Cognitive Behavioral Therapist plugin for Obsidian
+An AI-powered Cognitive Behavioral Therapist plugin for Obsidian
 
 TODO: GIF
 
