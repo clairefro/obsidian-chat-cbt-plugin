@@ -20,6 +20,8 @@ Your conversations are stored in local files on your computer you can use as a d
 
 To get started using ChatCBT, you need to configure an AI platform connection from the ChatCBT plugin settings menu.
 
+<img width="941" alt="image" src="https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/bbe7a24a-be60-43c4-91ae-c90711ecc7d7">
+
 You have two options:
 
 - **OpenAI** - a paid cloud service
