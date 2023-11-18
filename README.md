@@ -56,7 +56,7 @@ Note that with the OpenAI option enabled, your messages will be sent to OpenAI. 
 
 ### Ollama setup
 
-[Ollama](https://ollama.ai/) is a client that allows you to easily run powerful open source LLM models locally on your machine.
+[Ollama](https://ollama.ai/) is a client that allows you to easily run powerful open source LLM models locally on your machine for free.
 
 **System requirements**
 
