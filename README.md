@@ -18,14 +18,16 @@ Chat with ChatCBT any hour of the day to help reframe your negative thoughts and
 
 To get started using ChatCBT, you need to configure an AI platform connection from the ChatCBT plugin settings menu.
 
-You have two options: a paid cloud service (OpenAI) or free local service (Ollama). OpenAI is recommended for conversation quality and speed, with the cavaet that your messages are sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy).
+You have two options: a paid cloud service (OpenAI) or free local service (Ollama).
+
+OpenAI is recommended for conversation quality and speed, with the cavaet that it is a paid service and that your messages are sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy).
 
 ### Choosing a model
 
-| Platform                 | Model           | Cost                                  | Hosting         | Speed   | Quality   |
-| ------------------------ | --------------- | ------------------------------------- | --------------- | ------- | --------- |
-| **OpenAI** (recommended) | `gpt-3.5-turbo` | Paid (less than a few cents per chat) | Cloud           | Fast ⚡ | Excellent |
-| **Ollama**               | `mistral`       | Free                                  | Local (private) | OK      | Good      |
+| Platform                 | Model           | Cost         | Hosting         | Speed   | Quality   |
+| ------------------------ | --------------- | ------------ | --------------- | ------- | --------- |
+| **OpenAI** (recommended) | `gpt-3.5-turbo` | Paid (cheap) | Cloud           | Fast ⚡ | Excellent |
+| **Ollama**               | `mistral`       | Free         | Local (private) | OK      | Good      |
 
 ### OpenAI setup
 
