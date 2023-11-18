@@ -78,6 +78,18 @@ This will start a local server that hosts your Ollama instance locally on your c
 5. Chat enough back and forth to start reframing your negative thoughts
 6. Once you are ready to sum up your conversation, run "Summarize" for create a table outlining your reframed thoughts
 
+### Running commands
+
+You can run the "Chat" and "Summarize" commands from the left ribbon menu or the command pallette.
+
+**Ribbon menu**
+
+<img width="368" alt="image" src="https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/1ab0126b-48de-48c4-b33d-45896334651c">
+
+**Command pallete (`cmd` + `p` > search "chat...")**
+
+<img width="777" alt="image" src="https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/ea32ec43-dd9e-4def-87f2-64ee59b9f849">
+
 ## Disclaimer
 
 I am not a licensed therapist, and ChatCBT is not a replacement for actual therapy. Instead, ChatCBT should be thought of as an assistant similar to an interactive CBT worksheet. It is a bot that responds with objective questions to help you see your problems from other angles. You can see the exact AI prompts that the bot is using here: [chat](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/system.ts) and [summarize](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/summary.ts).
