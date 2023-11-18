@@ -57,14 +57,14 @@ Note that with the OpenAI option enabled, your messages will be sent to OpenAI. 
   - MacOS Big Sur or later
   - Linux
   - (Windows coming soon, check their site)
-- ~4.5GB of storage
-  - Ollama: ~500 MB
-  - Mistral model: ~4GB
+- 4.5GB of storage
+  - Ollama: 500 MB
+  - Mistral model: 4GB
 - At least 8GB of RAM, ideally
 
 1. [download ollama](https://ollama.ai/)
-2. download `mistral` model: in terminal, run in terminal `ollama pull mistral`
-3. Start local server by running this command in terminal `OLLAMA_ORIGINS="*" OLLAMA_HOST="0.0.0.0:11434" ollama serve`
+2. download `mistral` model: in terminal, run `ollama pull mistral`
+3. Start local server: in terminal, run `OLLAMA_ORIGINS="*" OLLAMA_HOST="0.0.0.0:11434" ollama serve`
 4. Ensure "Ollama mode" is enabled in ChatCBT settings
 
 This will start a local server that hosts your Ollama instance locally on your computer from port `11434`. You can change the port if you like by editing the `OLLAMA_HOST` property in step 3 - just be sure to also update the `Ollama URL` in the ChatCBT plugin settings too. The `OLLAMA_ORIGINS='*'` allows Obsidian to talk to Ollama.
