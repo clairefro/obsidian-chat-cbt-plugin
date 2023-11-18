@@ -53,8 +53,21 @@ Treat your OpenAI API Keys like a password - do not share this publicaly. For yo
 3. Start local server by running this command in terminal `OLLAMA_ORIGINS="*" OLLAMA_HOST="0.0.0.0:11434" ollama serve`
 4. Ensure "Ollama mode" is enabled in ChatCBT settings
 
-This will start a local server that hosts your Ollama instance locally on your computer from port `11434`. You can change the port if you like by editing the terminal command - just be sure to also update the `Ollama URL` in the ChatCBT plugin settings too.
+This will start a local server that hosts your Ollama instance locally on your computer from port `11434`. You can change the port if you like by editing the `OLLAMA_HOST` property in step 3 - just be sure to also update the `Ollama URL` in the ChatCBT plugin settings too. The `OLLAMA_ORIGINS='*'` allows Obsidian to talk to Ollama.
 
 ### Usage
 
-TODO
+1. Start a new note
+2. Type what's bothering you
+3. Run "Chat" from ChatCBT
+4. You can converse with ChatGPT by adding additional responses at the bottom of the file
+5. Chat enough back and forth to start reframing your negative thoughts
+6. Once you are ready to sum up your conversation, run "Summarize". A table outlining your reframed thoughts
+
+### Disclaimer
+
+I am not a licensed therapist, and ChatCBT is not a replacement for actual therapy. Instead, ChatCBT should be thought of as an assistant similar to an interactive CBT worksheet. It is a bot that aims to respond with objective questions to see your problems from other angles. You can see the exact AI prompts that the bot is using to here: [chat](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/system.ts) and [summarize](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/summary.ts).
+
+While I've tested out ChatCBT and found it personally useful in unprogramming negative thoughts, please note that AI produces inherently unpredictable responses. You are responsible for using your own discretion in interpreting responses from the bot, and determining whether this tool is useful for you.
+
+I'm happy to hear about any issues you encounter with the bot in the Issues tab, or through a DM to `@clairefroe` on Twitter/X.
