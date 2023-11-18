@@ -20,9 +20,12 @@ Your conversations are stored in local files on your computer you can use as a d
 
 To get started using ChatCBT, you need to configure an AI platform connection from the ChatCBT plugin settings menu.
 
-You have two options: a paid cloud service (OpenAI) or free local service (Ollama).
+You have two options:
 
-OpenAI is recommended for conversation quality and speed, with the cavaet that it is a paid service and that your messages are sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy).
+- **OpenAI** - a paid cloud service
+- **Ollama** - a free local service
+
+**OpenAI** is recommended for conversation quality and speed, with the cavaet that it is a paid service, and that your messages are sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy).
 
 ### Choosing a model
 
