@@ -33,7 +33,7 @@ const VALID_MODES = ['openai', 'ollama']
 const DEFAULT_SETTINGS: MyPluginSettings = {
   openAiApiKey: "",
   mode: "openai",
-  ollamaUrl: ""
+  ollamaUrl: "http://0.0.0.0:11434"
 };
 
 
@@ -228,14 +228,17 @@ class MySettingTab extends PluginSettingTab {
 
 	new Setting(containerEl)
       .setName("Ollama mode (local)")
-        .setDesc("Toggle on for a local expereince if you are running Ollama. Otherwise, deafults to OpenAI")
+      .setDesc("Toggle on for a local experience if you are running Ollama")
       .addToggle((toggle) =>
         toggle
-          .setValue((!this.plugin.settings.mode || this.plugin.settings.mode === 'openai') ? true : false)
+          .setValue((this.plugin.settings.mode === 'openai' ? false : true))
           .onChange(async (value) => {
+			console.log({value})
 			if (value) {
+				console.log('ollama')
 			  this.plugin.settings.mode = "ollama"
 			} else {
+				console.log('openai')
 			  this.plugin.settings.mode = "openai";
 			}
             await this.plugin.saveSettings();
@@ -245,11 +248,11 @@ class MySettingTab extends PluginSettingTab {
 
 	new Setting(containerEl)
       .setName("Ollama server URL")
-      .setDesc("Edit this if you set up a non-default port for using Ollama.")
+      .setDesc("Edit this if you changed the default port for using Ollama")
       .addText((text) =>
         text
           .setPlaceholder("ex: http://0.0.0.0:11434")
-          .setValue(this.plugin.settings.ollamaUrl ? this.plugin.settings.ollamaUrl : "http://0.0.0.0:11434")
+          .setValue(this.plugin.settings.ollamaUrl)
           .onChange(async (value) => {
 			this.plugin.settings.ollamaUrl = value.trim();
             await this.plugin.saveSettings();

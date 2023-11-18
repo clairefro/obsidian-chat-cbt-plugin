@@ -4,20 +4,20 @@
 
 TODO: GIF
 
-### Setup
+## Setup
 
 To get started using ChatCBT, you need to configure an AI platform connection from the ChatCBT plugin settings menu.
 
-You have two options: a paid cloud service (OpenAI) or free local service (Ollama). OpenAI is recommended for conversation quality and speed.
+You have two options: a paid cloud service (OpenAI) or free local service (Ollama). OpenAI is recommended for conversation quality and speed, with the cavaet that your messages are sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy).
 
-#### Choosing a model
+### Choosing a model
 
 | Platform                 | Model           | Cost                                  | Hosting         | Speed   | Quality   |
 | ------------------------ | --------------- | ------------------------------------- | --------------- | ------- | --------- |
 | **OpenAI** (recommended) | `gpt-3.5-turbo` | Paid (less than a few cents per chat) | Cloud           | Fast ⚡ | Excellent |
 | **Ollama**               | `mistral`       | Free                                  | Local (private) | OK      | Good      |
 
-#### OpenAI setup
+### OpenAI setup
 
 [OpenAI](https://openai.com/about) provides cloud based AI solutions, including the models that power ChatGPT.
 
@@ -33,7 +33,7 @@ To use OpenAI with ChatCBT:
 
 Treat your OpenAI API Keys like a password - do not share this publicaly. For your safety, your OpenAI API key is encrypted when saving settings.
 
-#### Ollama setup
+### Ollama setup
 
 [Ollama](https://ollama.ai/) is a client that allows you to easily run powerful open source LLM models locally on your machine.
 
