@@ -10,21 +10,36 @@ import {
   Menu,
 } from "obsidian";
 import { crypt } from "./util/crypt";
-import { ChatCbt, Message } from "./util/chatcbt";
+import { ChatCbt, Mode } from "./util/chatcbt";
 import { buildAssistantMsg, convertTextToMsg } from "./util/messages";
 
+
+
 /** Interfaces */
-const chatCbt = new ChatCbt();
 interface MyPluginSettings {
   openAiApiKey: string;
+  mode: string;
+  ollamaUrl: string;
 }
+interface ChatCbtResponseInput {
+	isSummary: boolean;
+	mode: Mode;
+}
+
+const chatCbt = new ChatCbt();
+
+const VALID_MODES = ['openai', 'ollama']
 
 const DEFAULT_SETTINGS: MyPluginSettings = {
   openAiApiKey: "",
+  mode: "openai",
+  ollamaUrl: ""
 };
+
 
 export default class ChatCbtPlugin extends Plugin {
   settings: MyPluginSettings;
+  statusBar: HTMLElement
 
   async onload() {
     console.log("loading plugin");
@@ -46,7 +61,7 @@ export default class ChatCbtPlugin extends Plugin {
             .setTitle("Chat")
             .setIcon("message-circle")
             .onClick(() => {
-              this.getChatCbtRepsonse();
+              this.getChatCbtRepsonse({ isSummary: false, mode: 'openai' });
             })
         );
 
@@ -65,14 +80,15 @@ export default class ChatCbtPlugin extends Plugin {
 
     // This adds a status bar item to the bottom of the app. Does not work on mobile apps.
     const statusBarItemEl = this.addStatusBarItem();
-    statusBarItemEl.setText("ChatCBT");
+	this.setStatusBarMode(this.settings.mode as Mode);
+	this.statusBar = statusBarItemEl;
 
     // This adds an editor command that can perform some operation on the current editor instance
     this.addCommand({
       id: "chatcbt-chat",
       name: "Chat - submit the text in the active tab to ChatCBT",
       editorCallback: (_editor: Editor, _view: MarkdownView) => {
-		this.getChatCbtRepsonse()
+		this.getChatCbtRepsonse({ isSummary: false, mode: this.settings.mode as Mode })
       },
     });
 
@@ -88,16 +104,6 @@ export default class ChatCbtPlugin extends Plugin {
     // This adds a settings tab so the user can configure various aspects of the plugin
     this.addSettingTab(new MySettingTab(this.app, this));
 
-    // If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
-    // Using this function will automatically remove the event listener when this plugin is disabled.
-    this.registerDomEvent(document, "click", (evt: MouseEvent) => {
-      //   console.log("click", evt);
-    });
-
-    // When registering intervals, this function will automatically clear the interval when the plugin is disabled.
-    this.registerInterval(
-      window.setInterval(() => console.log("setInterval"), 5 * 60 * 1000)
-    );
   }
 
   /** Run when plugin is disabled */
@@ -113,15 +119,30 @@ export default class ChatCbtPlugin extends Plugin {
     await this.saveData(this.settings);
   }
 
+  setStatusBarMode(mode: Mode) {
+	this.statusBar && this.statusBar.setText(`ChatCBT - ${mode} mode`);
+  }
 
-  async getChatCbtRepsonse(isSummary: boolean = false) {
+
+  async getChatCbtRepsonse({ isSummary = false, mode = 'openai' } : ChatCbtResponseInput) {
     const activeFile = this.app.workspace.getActiveFile();
     if (!activeFile) {
       return;
     }
+    
+	
+	if(!VALID_MODES.includes(this.settings.mode)) {
+	  new Notice(`Inavlid mode '${this.settings.mode}' detected. Update in ChatCBT plugin settings and select a valid mode`);
+	  return
+	}
 
-	if(!this.settings.openAiApiKey) {
-	  new Notice("Missing API Key - update in ChatCBT plugin settings");
+	if(this.settings.mode === 'openai' && !this.settings.openAiApiKey) {
+	  new Notice("Missing OpenAI API Key - update in ChatCBT plugin settings");
+	  return
+	}
+
+	if(this.settings.mode === 'ollama' && !this.settings.ollamaUrl) {
+	  new Notice("Missing Ollama URL - update in ChatCBT plugin settings");
 	  return
 	}
 
@@ -144,31 +165,30 @@ export default class ChatCbtPlugin extends Plugin {
 
     try {
       new Notice("Asking ChatCBT...");
-      const res = await chatCbt.chat(
-        crypt.decrypt(this.settings.openAiApiKey),
+      const res = await chatCbt.chat({
+		apiKey: crypt.decrypt(this.settings.openAiApiKey),
         messages,
-		isSummary
-      );
+		isSummary,
+		mode: this.settings.mode as Mode,
+		ollamaUrl: this.settings.ollamaUrl
+	   });
       response = res;
     } catch (e) {
-		if(e.response.status === 401) {
-		  new Notice("Invalid API Key - update in ChatCBT plugin settings");
-		} else {
-		  new Notice("ChatCBT failed :(");
-		}
+	  new Notice(`ChatCBT failed :(: ${e.message}`);
       console.error(e);
     } finally {
 	  loadingModal.close()
 	}
 
     if (response) {
-      const appendMsg = isSummary ? "\n\n" + response : buildAssistantMsg(response);
+	  const MSG_PADDING = "\n\n"
+      const appendMsg = isSummary ? MSG_PADDING + response : buildAssistantMsg(response);
       await this.app.vault.append(activeFile, appendMsg);
     }
   }
 
   async getChatCbtSummary() {
-	await this.getChatCbtRepsonse(true)
+	await this.getChatCbtRepsonse({ isSummary: true, mode: 'openai' })
   }
 }
 
@@ -198,6 +218,36 @@ class MySettingTab extends PluginSettingTab {
 			} else {
 			  this.plugin.settings.openAiApiKey = crypt.encrypt(value.trim());
 			}
+            await this.plugin.saveSettings();
+          })
+      );
+
+	new Setting(containerEl)
+      .setName("Ollama mode (local)")
+        .setDesc("Toggle on for a local expereince if you are running Ollama. Otherwise, deafults to OpenAI")
+      .addToggle((toggle) =>
+        toggle
+          .setValue((!this.plugin.settings.mode || this.plugin.settings.mode === 'openai') ? true : false)
+          .onChange(async (value) => {
+			if (value) {
+			  this.plugin.settings.mode = "ollama"
+			} else {
+			  this.plugin.settings.mode = "openai";
+			}
+            await this.plugin.saveSettings();
+			this.plugin.setStatusBarMode(this.plugin.settings.mode as Mode);
+          })
+      );
+
+	new Setting(containerEl)
+      .setName("Ollama server URL")
+      .setDesc("1. install ollama\n2. download 'mistral' model\n3. run 'OLLAMA_ORIGINS=\"*\" OLLAMA_HOST=\"0.0.0.0:11434\" ollama serve' in terminal")
+      .addText((text) =>
+        text
+          .setPlaceholder("ex: http://localhost:11434")
+          .setValue(this.plugin.settings.ollamaUrl ? this.plugin.settings.ollamaUrl : "")
+          .onChange(async (value) => {
+			this.plugin.settings.ollamaUrl = value.trim();
             await this.plugin.saveSettings();
           })
       );
