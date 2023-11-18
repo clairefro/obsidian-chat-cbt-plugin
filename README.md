@@ -2,7 +2,17 @@
 
 An AI-powered Cognitive Behavioral Therapist plugin for Obsidian
 
-TODO: GIF
+## Demo
+
+Chat with ChatCBT any hour of the day to help reframe your negative thoughts and rewire your reactions to distressful circumstances. Your conversations are stored in local files on your computer you can use as a diary, or even share with a therapist.
+
+### Start chatting in a note
+
+![untitled-2x](https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/3b25b29e-ba86-4d39-b76f-fea17a75fe34)
+
+### Summarize your findings when you're ready
+
+![summary](https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/27130199-4398-4861-bef7-924bc9f979d2)
 
 ## Setup
 
@@ -32,6 +42,8 @@ To use OpenAI with ChatCBT:
 5. Ensure "Ollama mode" is disabled in ChatCBT plugin settings
 
 Treat your OpenAI API Keys like a password - do not share this publicaly. For your safety, your OpenAI API key is encrypted when saving settings.
+
+Note that with the OpenAI option enabled, your messages will be sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy). To minimize chances of association of messages with you personally, I crafted the prompt to respond to a "fictional client". As you can guess, this is not foolproof. Try to stick to your emotions, and avoid disclosing any sensitive personal info like real names of people or your home address.
 
 ### Ollama setup
 
