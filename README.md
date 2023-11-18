@@ -1,96 +1,60 @@
-# Obsidian Sample Plugin
+# ChatCBT
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+> An AI-powered Cognitive Behavioral Therapist plugin for Obsidian
 
-This project uses Typescript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in Typescript Definition format, which contains TSDoc comments describing what it does.
+TODO: GIF
 
-**Note:** The Obsidian API is still in early alpha and is subject to change at any time!
+### Setup
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+To get started using ChatCBT, you need to configure an AI platform connection from the ChatCBT plugin settings menu.
 
-## First time developing plugins?
+You have two options: a paid cloud service (OpenAI) or free local service (Ollama). OpenAI is recommended for conversation quality and speed.
 
-Quick starting guide for new plugin devs:
+#### Choosing a model
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+| Platform                 | Model           | Cost                                  | Hosting         | Speed   | Quality   |
+| ------------------------ | --------------- | ------------------------------------- | --------------- | ------- | --------- |
+| **OpenAI** (recommended) | `gpt-3.5-turbo` | Paid (less than a few cents per chat) | Cloud           | Fast ⚡ | Excellent |
+| **Ollama**               | `mistral`       | Free                                  | Local (private) | OK      | Good      |
 
-## Releasing new releases
+#### OpenAI setup
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+[OpenAI](https://openai.com/about) provides cloud based AI solutions, including the models that power ChatGPT.
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+While use of OpenAI costs money, it is cheap (as of Nov 2023). Chat sessions with ChatCBT cost less than a few 2-4 cents.
 
-## Adding your plugin to the community plugin list
+To use OpenAI with ChatCBT:
 
-- Check https://github.com/obsidianmd/obsidian-releases/blob/master/plugin-review.md
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+1. [Create](https://auth0.openai.com/u/signup) an OpenAI account
+2. Add a payment method to your account
+3. Generate an API Key [here](https://platform.openai.com/api-keys) and copy it to your clipboard
+4. Set your OpenAI API Key in ChatCBT plugin settings
+5. Ensure "Ollama mode" is disabled in ChatCBT plugin settings
 
-## How to use
+Treat your OpenAI API Keys like a password - do not share this publicaly. For your safety, your OpenAI API key is encrypted when saving settings.
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+#### Ollama setup
 
-## Manually installing the plugin
+[Ollama](https://ollama.ai/) is a client that allows you to easily run powerful open source LLM models locally on your machine.
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+**System requirements**
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
+- Available for:
+  - MacOS Big Sur or later
+  - Linux
+  - (Windows coming soon, check their site)
+- ~4.5GB of storage
+  - Ollama: ~500 MB
+  - Mistral model: ~4GB
+- At least 8GB of RAM, ideally
 
-## Funding URL
+1. [download ollama](https://ollama.ai/)
+2. download `mistral` model: in terminal, run in terminal `ollama pull mistral`
+3. Start local server by running this command in terminal `OLLAMA_ORIGINS="*" OLLAMA_HOST="0.0.0.0:11434" ollama serve`
+4. Ensure "Ollama mode" is enabled in ChatCBT settings
 
-You can include funding URLs where people who use your plugin can financially support it.
+This will start a local server that hosts your Ollama instance locally on your computer from port `11434`. You can change the port if you like by editing the terminal command - just be sure to also update the `Ollama URL` in the ChatCBT plugin settings too.
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+### Usage
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
-```
-
-If you have multiple URLs, you can also do:
-
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
-
-## API Documentation
-
-See https://github.com/obsidianmd/obsidian-api
+TODO

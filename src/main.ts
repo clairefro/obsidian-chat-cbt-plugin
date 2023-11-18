@@ -204,6 +204,10 @@ class MySettingTab extends PluginSettingTab {
     const { containerEl } = this;
 
     containerEl.empty();
+    
+	containerEl.createEl('a', { 'href': 'https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/README.md', 'text': 'Read the setup guide ↗️ ' });
+	containerEl.createEl('br');
+	containerEl.createEl('br');
 
     new Setting(containerEl)
       .setName("OpenAI API Key")
@@ -241,11 +245,11 @@ class MySettingTab extends PluginSettingTab {
 
 	new Setting(containerEl)
       .setName("Ollama server URL")
-      .setDesc("1. install ollama\n2. download 'mistral' model\n3. run 'OLLAMA_ORIGINS=\"*\" OLLAMA_HOST=\"0.0.0.0:11434\" ollama serve' in terminal")
+      .setDesc("Edit this if you set up a non-default port for using Ollama.")
       .addText((text) =>
         text
-          .setPlaceholder("ex: http://localhost:11434")
-          .setValue(this.plugin.settings.ollamaUrl ? this.plugin.settings.ollamaUrl : "")
+          .setPlaceholder("ex: http://0.0.0.0:11434")
+          .setValue(this.plugin.settings.ollamaUrl ? this.plugin.settings.ollamaUrl : "http://0.0.0.0:11434")
           .onChange(async (value) => {
 			this.plugin.settings.ollamaUrl = value.trim();
             await this.plugin.saveSettings();

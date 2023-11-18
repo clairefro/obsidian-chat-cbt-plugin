@@ -75,8 +75,8 @@ export class ChatCbt {
 
   async _ollama_chat(messages: Message[], ollamaUrl: string): Promise<string> {
 	const url = ollamaUrl.replace(/\/$/,"") + "/api/generate"
-	// console.log({messages: messages.map(m => `${m.role}: ${m.content}`)})
-    const data = {
+
+	const data = {
 		model: "mistral",
 		prompt: JSON.stringify(messages),
 		system: JSON.stringify(SYSTEM_MSG.content),
