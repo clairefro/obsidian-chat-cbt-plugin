@@ -13,8 +13,6 @@ import { crypt } from "./util/crypt";
 import { ChatCbt, Mode } from "./util/chatcbt";
 import { buildAssistantMsg, convertTextToMsg } from "./util/messages";
 
-
-
 /** Interfaces */
 interface MyPluginSettings {
   openAiApiKey: string;
@@ -26,8 +24,7 @@ interface ChatCbtResponseInput {
 	mode: Mode;
 }
 
-const chatCbt = new ChatCbt();
-
+/** Constants */
 const VALID_MODES = ['openai', 'ollama']
 
 const DEFAULT_SETTINGS: MyPluginSettings = {
@@ -35,6 +32,9 @@ const DEFAULT_SETTINGS: MyPluginSettings = {
   mode: "openai",
   ollamaUrl: "http://0.0.0.0:11434"
 };
+
+/** Initialize chat client */
+const chatCbt = new ChatCbt();
 
 
 export default class ChatCbtPlugin extends Plugin {
@@ -48,12 +48,10 @@ export default class ChatCbtPlugin extends Plugin {
 
 
     // This creates an icon in the left ribbon.
-    const ribbonIconEl = this.addRibbonIcon(
+    this.addRibbonIcon(
       "heart-handshake",
       "ChatCBT",
       (evt: MouseEvent) => {
-        // Called when the user clicks the icon.
-
         const menu = new Menu();
 
         menu.addItem((item) =>
@@ -80,8 +78,8 @@ export default class ChatCbtPlugin extends Plugin {
 
     // This adds a status bar item to the bottom of the app. Does not work on mobile apps.
     const statusBarItemEl = this.addStatusBarItem();
-	this.setStatusBarMode(this.settings.mode as Mode);
 	this.statusBar = statusBarItemEl;
+	this.setStatusBarMode(this.settings.mode as Mode);
 
     // This adds an editor command that can perform some operation on the current editor instance
     this.addCommand({
@@ -100,10 +98,8 @@ export default class ChatCbtPlugin extends Plugin {
 		},
 	  });
 
-
     // This adds a settings tab so the user can configure various aspects of the plugin
     this.addSettingTab(new MySettingTab(this.app, this));
-
   }
 
   /** Run when plugin is disabled */
@@ -120,7 +116,7 @@ export default class ChatCbtPlugin extends Plugin {
   }
 
   setStatusBarMode(mode: Mode) {
-	this.statusBar && this.statusBar.setText(`ChatCBT - ${mode} mode`);
+	this.statusBar.setText(`ChatCBT - ${mode} mode`);
   }
 
 
@@ -157,14 +153,13 @@ export default class ChatCbtPlugin extends Plugin {
       .map((i) => i.trim())
       .map((i) => convertTextToMsg(i));
     
-
-	const loadingModal = new TextModel(this.app, "Asking...");
-	loadingModal.open()
+	const loadingModal = new TextModel(this.app, `Asking ChatCBT... (${this.settings.mode} mode)`);
+	loadingModal.open();
 
     let response = "";
 
     try {
-      new Notice("Asking ChatCBT...");
+      new Notice(`Asking ChatCBT... (${this.settings.mode} mode)`);
       const res = await chatCbt.chat({
 		apiKey: crypt.decrypt(this.settings.openAiApiKey),
         messages,
@@ -235,10 +230,8 @@ class MySettingTab extends PluginSettingTab {
           .onChange(async (value) => {
 			console.log({value})
 			if (value) {
-				console.log('ollama')
-			  this.plugin.settings.mode = "ollama"
+			  this.plugin.settings.mode = "ollama";
 			} else {
-				console.log('openai')
 			  this.plugin.settings.mode = "openai";
 			}
             await this.plugin.saveSettings();
