@@ -55,7 +55,7 @@ Treat your OpenAI API Keys like a password - do not share this publicaly. For yo
 
 This will start a local server that hosts your Ollama instance locally on your computer from port `11434`. You can change the port if you like by editing the `OLLAMA_HOST` property in step 3 - just be sure to also update the `Ollama URL` in the ChatCBT plugin settings too. The `OLLAMA_ORIGINS='*'` allows Obsidian to talk to Ollama.
 
-### Usage
+## Usage
 
 1. Start a new note
 2. Type what's bothering you
@@ -64,7 +64,7 @@ This will start a local server that hosts your Ollama instance locally on your c
 5. Chat enough back and forth to start reframing your negative thoughts
 6. Once you are ready to sum up your conversation, run "Summarize". A table outlining your reframed thoughts
 
-### Disclaimer
+## Disclaimer
 
 I am not a licensed therapist, and ChatCBT is not a replacement for actual therapy. Instead, ChatCBT should be thought of as an assistant similar to an interactive CBT worksheet. It is a bot that aims to respond with objective questions to see your problems from other angles. You can see the exact AI prompts that the bot is using to here: [chat](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/system.ts) and [summarize](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/summary.ts).
 
