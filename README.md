@@ -62,7 +62,7 @@ This will start a local server that hosts your Ollama instance locally on your c
 3. Run "Chat" from ChatCBT
 4. You can converse with ChatGPT by adding additional responses at the bottom of the file
 5. Chat enough back and forth to start reframing your negative thoughts
-6. Once you are ready to sum up your conversation, run "Summarize". A table outlining your reframed thoughts
+6. Once you are ready to sum up your conversation, run "Summarize" for create a table outlining your reframed thoughts
 
 ## Disclaimer
 
