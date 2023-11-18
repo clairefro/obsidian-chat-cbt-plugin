@@ -66,7 +66,7 @@ This will start a local server that hosts your Ollama instance locally on your c
 
 ## Disclaimer
 
-I am not a licensed therapist, and ChatCBT is not a replacement for actual therapy. Instead, ChatCBT should be thought of as an assistant similar to an interactive CBT worksheet. It is a bot that aims to respond with objective questions to see your problems from other angles. You can see the exact AI prompts that the bot is using to here: [chat](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/system.ts) and [summarize](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/summary.ts).
+I am not a licensed therapist, and ChatCBT is not a replacement for actual therapy. Instead, ChatCBT should be thought of as an assistant similar to an interactive CBT worksheet. It is a bot that responds with objective questions to help you see your problems from other angles. You can see the exact AI prompts that the bot is using to here: [chat](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/system.ts) and [summarize](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/summary.ts).
 
 While I've tested out ChatCBT and found it personally useful in unprogramming negative thoughts, please note that AI produces inherently unpredictable responses. You are responsible for using your own discretion in interpreting responses from the bot, and determining whether this tool is useful for you.
 
