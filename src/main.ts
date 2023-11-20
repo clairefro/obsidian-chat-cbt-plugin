@@ -83,7 +83,7 @@ export default class ChatCbtPlugin extends Plugin {
 
     // This adds an editor command that can perform some operation on the current editor instance
     this.addCommand({
-      id: "chatcbt-chat",
+      id: "chat",
       name: "Chat - submit the text in the active tab to ChatCBT",
       editorCallback: (_editor: Editor, _view: MarkdownView) => {
 		this.getChatCbtRepsonse({ isSummary: false, mode: this.settings.mode as Mode })
@@ -91,7 +91,7 @@ export default class ChatCbtPlugin extends Plugin {
     });
 
 	this.addCommand({
-		id: "chatcbt-summarize",
+		id: "summarize",
 		name: "Summarize - create a table that summarizes reframed thoughts from your conversation",
 		editorCallback: (_editor: Editor, _view: MarkdownView) => {
 		  this.getChatCbtSummary()
