@@ -1,4 +1,3 @@
-import axios from "axios";
 import { requestUrl } from "obsidian";
 import systemPrompt from "../prompts/system";
 import summaryPrompt from "../prompts/summary";
@@ -17,8 +16,6 @@ export interface ChatInput {
 	mode: Mode
 	ollamaUrl: string | undefined
 }
-
-
 
 const SYSTEM_MSG = { role: "system", content: systemPrompt };
 const SUMMARY_MSG = { role: "user", content: summaryPrompt };
