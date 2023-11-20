@@ -1,6 +1,8 @@
 import axios from "axios";
+import { requestUrl } from "obsidian";
 import systemPrompt from "../prompts/system";
 import summaryPrompt from "../prompts/summary";
+
 
 export interface Message {
   role: string;
@@ -56,21 +58,21 @@ export class ChatCbt {
 		temperature: 0.7,
 	  };
   
-	  const headers = {
-		headers: {
-		  Authorization: `Bearer ${apiKey}`,
-		},
-	  };
+	const headers = {
+		Authorization: `Bearer ${apiKey}`,
+		"Content-Type": "application/json"
+	};
 
-      try {
-		const response: { data: { choices: { message: { content: string } }[] } } =
-		await axios.post(url, data, headers);
-  
-	    return response.data.choices[0].message.content;
-	  } catch(e) {
-		throw e
-	  }
-	  
+	const options = {
+		url, 
+		method: "POST",
+		body: JSON.stringify(data),
+		headers: headers as unknown as Record<string, string>
+	}
+
+	const response: { json: { choices: { message: { content: string } }[] } } = await requestUrl(options);
+
+	return response.json.choices[0].message.content;
   }
 
   async _ollama_chat(messages: Message[], ollamaUrl: string): Promise<string> {
@@ -81,13 +83,15 @@ export class ChatCbt {
 		prompt: JSON.stringify(messages),
 		system: JSON.stringify(SYSTEM_MSG.content),
 		stream: false
-	  };
+	};
+
+	const options = {
+		url, 
+		method: "POST",
+		body: JSON.stringify(data),
+	}
   
-      try {
-		const response: { data: { response: string } }  = await axios.post(url, data);
-	    return response.data.response;
-	  } catch(e) {
-        throw e
-	  }
+	const response: { json: { response: string } }  = await requestUrl(options);
+	return response.json.response;
   }
 }

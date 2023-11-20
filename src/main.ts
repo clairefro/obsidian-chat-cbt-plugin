@@ -14,7 +14,7 @@ import { ChatCbt, Mode } from "./util/chatcbt";
 import { buildAssistantMsg, convertTextToMsg } from "./util/messages";
 
 /** Interfaces */
-interface MyPluginSettings {
+interface ChatCbtPluginSettings {
   openAiApiKey: string;
   mode: string;
   ollamaUrl: string;
@@ -27,7 +27,7 @@ interface ChatCbtResponseInput {
 /** Constants */
 const VALID_MODES = ['openai', 'ollama']
 
-const DEFAULT_SETTINGS: MyPluginSettings = {
+const DEFAULT_SETTINGS: ChatCbtPluginSettings = {
   openAiApiKey: "",
   mode: "openai",
   ollamaUrl: "http://0.0.0.0:11434"
@@ -38,7 +38,7 @@ const chatCbt = new ChatCbt();
 
 
 export default class ChatCbtPlugin extends Plugin {
-  settings: MyPluginSettings;
+  settings: ChatCbtPluginSettings;
   statusBar: HTMLElement
 
   async onload() {
