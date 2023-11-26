@@ -17,7 +17,7 @@ Your conversations are stored in local files on your computer you can use as a d
 ![summary](https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/27130199-4398-4861-bef7-924bc9f979d2)
 
 ## Install 
-This plugin is under review to become an official [Obsidian Community Plugin]([url](https://help.obsidian.md/Extending+Obsidian/Community+plugins). 
+This plugin is under review to become an official [Obsidian Community Plugin]([url](https://help.obsidian.md/Extending+Obsidian/Community+plugins)). 
 
 Until then, you can install and enable ChatCBT in developer mode via these steps:
 
