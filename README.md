@@ -4,9 +4,9 @@ An AI-powered Cognitive Behavioral Therapist plugin for [Obsidian](https://obsid
 
 ## Demo
 
-Chat with ChatCBT any hour of the day to help reframe your negative thoughts and rewire your reactions to distressful circumstances ([\*disclaimer](https://github.com/clairefro/obsidian-chat-cbt-plugin#disclaimer)).
+Chat with ChatCBT to help reframe negative thoughts and rewire your reactions to distressful situations ([\*disclaimer](https://github.com/clairefro/obsidian-chat-cbt-plugin#disclaimer)). 
 
-Your conversations are stored in local files on your computer you can use as a diary, or even share with a therapist.
+Your conversations are stored privately in local files on your computer you can use as a diary, or even share with a therapist. You can use the reframed thoughts in the summary table as affirmations. Choose how your data is handled: use either a cloud-based AI service (OpenAI), or a 100% local and private service (Ollama). 
 
 ### Start chatting in a note
 
