@@ -16,6 +16,21 @@ Your conversations are stored in local files on your computer you can use as a d
 
 ![summary](https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/27130199-4398-4861-bef7-924bc9f979d2)
 
+## Install 
+This plugin is under review to become an official [Obsidian Community Plugin]([url](https://help.obsidian.md/Extending+Obsidian/Community+plugins). 
+
+Until then, you can install and enable ChatCBT in developer mode via these steps:
+
+1. In Obsidian, make sure you have [enabled Community Plugins]([url](https://help.obsidian.md/Extending+Obsidian/Plugin+security#Restricted+mode)) 
+2. In your terminal, navigate to the Obsidian vault (directory) on your computer where you'd like to use ChatCBT
+3. `cd .obsidian`
+4. `cd plugins` (if `plugins` directory doesn't exist, create one: `mkdir plugins`, then `cd plugins`)
+5. `git clone git@github.com:clairefro/obsidian-chat-cbt-plugin.git`
+6. Install dependences: `npm i`
+7. Run plugin `npm run dev`
+8. Navigate back to Obsidian settings, add ChatCBT plugin and enable it
+9. Follow setup instructions below 
+
 ## Setup
 
 To get started using ChatCBT, you need to configure an AI platform connection from the ChatCBT plugin settings menu.
