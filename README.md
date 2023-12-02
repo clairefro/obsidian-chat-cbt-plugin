@@ -8,11 +8,11 @@ Chat with ChatCBT to help reframe negative thoughts and rewire your reactions to
 
 ### Start chatting in a note
 
-![untitled-2x](https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/3b25b29e-ba86-4d39-b76f-fea17a75fe34)
+![chat-gif](https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/3b25b29e-ba86-4d39-b76f-fea17a75fe34)
 
 ### Summarize your findings when you're ready
 
-![summary](https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/27130199-4398-4861-bef7-924bc9f979d2)
+![summary-gif](https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/27130199-4398-4861-bef7-924bc9f979d2)
 
 ## Features
 - Available any time of day or night
