@@ -122,8 +122,8 @@ You can run the "Chat" and "Summarize" commands from the left ribbon menu or the
 
 ChatCBT is not a replacement for actual therapy or human interaction. Instead, ChatCBT should be thought of as a journaling assistant, similar to an interactive  worksheet. It is a bot that responds with objective questions to your writing help you get out of your head and see your problems from other angles. 
 
-While the bot is inspired by general methods of cognitive behavioral therapy, it has not been reviewed or approved by any licensed therapist. You can see the exact AI prompts that the bot is using here: [chat](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/system.ts) and [summarize](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/summary.ts).
+While the bot draws inspiration from general cognitive-behavioral therapy methods, it has not undergone review or approval by licensed therapists. Though I have personally found ChatCBT useful in managing negative thoughts, it's important to note that this bot was built by someone without domain expertise in pyschology. Also note that AI generates unpredictable responses. You are responsible for using your own discretion in determining whether or not this tool is useful for you. Conisder seeking help from a professional therapist. 
 
-While I've tested out ChatCBT and found it personally useful in stopping negative thoughts from getting out of control, please note that AI produces inherently unpredictable responses. You are responsible for using your own discretion in determining whether or not this tool is useful for you.
+You can see the exact prompts that the bot is using to generate responses here: [chat](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/system.ts) and [summarize](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/summary.ts).
 
 I'm happy to hear about any issues you encounter with the bot in the Issues tab, or through a DM to `@clairefroe` on Twitter/X.
