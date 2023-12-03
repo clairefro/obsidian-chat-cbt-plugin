@@ -1,10 +1,10 @@
 # ChatCBT
 
-An AI-powered Cognitive Behavioral Therapist plugin for [Obsidian](https://obsidian.md/)
+An AI-powered journaling assistant plugin for [Obsidian](https://obsidian.md/), inspired by cognitive behavioral therapy (CBT). 
 
 ## Demo
 
-Chat with ChatCBT to help reframe negative thoughts and rewire your reactions to distressful situations ([\*disclaimer](https://github.com/clairefro/obsidian-chat-cbt-plugin#disclaimer)). 
+ChatCBT is a journaling assitant that prods you to reframe negative thoughts and rewire your reactions to distressful situations ([\*disclaimer](https://github.com/clairefro/obsidian-chat-cbt-plugin#disclaimer)). 
 
 ### Start chatting in a note
 
@@ -20,7 +20,7 @@ Chat with ChatCBT to help reframe negative thoughts and rewire your reactions to
 - Conversations are stored privately in local files on your computer 
 - Automatically summarize your reframed thoughts in a table to inspire affirmations. 
 - Choose how your data is handled: use either a cloud-based AI service (OpenAI), or a 100% local and private service (Ollama).
-- 5000x cheaper than an average therapy session (less than two cents per session if using OpenAI, or FREE if using Ollama)
+- Less than two cents per journal session if using OpenAI, or FREE if using Ollama
   
 ## Install 
 This plugin is under review to become an official [Obsidian Community Plugin]([url](https://help.obsidian.md/Extending+Obsidian/Community+plugins)). 
@@ -120,8 +120,10 @@ You can run the "Chat" and "Summarize" commands from the left ribbon menu or the
 
 ## Disclaimer
 
-I am not a licensed therapist, and ChatCBT is not a replacement for actual therapy. Instead, ChatCBT should be thought of as an assistant similar to an interactive CBT worksheet. It is a bot that responds with objective questions to help you see your problems from other angles. You can see the exact AI prompts that the bot is using here: [chat](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/system.ts) and [summarize](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/summary.ts).
+ChatCBT is not a replacement for actual therapy or human interaction. Instead, ChatCBT should be thought of as a journaling assistant, similar to an interactive  worksheet. It is a bot that responds with objective questions to your writing help you get out of your head and see your problems from other angles. 
 
-While I've tested out ChatCBT and found it personally useful in unprogramming negative thoughts, please note that AI produces inherently unpredictable responses. You are responsible for using your own discretion in interpreting responses from the bot, and determining whether this tool is useful for you.
+While the bot is inspired by general cognitive behavioral therapy methods, it has not been reviewed or approved by any licensed therapist. You can see the exact AI prompts that the bot is using here: [chat](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/system.ts) and [summarize](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/summary.ts).
+
+While I've tested out ChatCBT and found it personally useful in stopping negative thoughts from getting out of control, please note that AI produces inherently unpredictable responses. You are responsible for using your own discretion in determining whether or not is useful for you.
 
 I'm happy to hear about any issues you encounter with the bot in the Issues tab, or through a DM to `@clairefroe` on Twitter/X.
