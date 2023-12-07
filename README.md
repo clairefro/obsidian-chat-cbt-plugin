@@ -1,6 +1,8 @@
 # ChatCBT
 
-An AI-powered journaling assistant plugin for [Obsidian](https://obsidian.md/), inspired by cognitive behavioral therapy (CBT). 
+An AI-powered journaling assistant for [Obsidian](https://obsidian.md/), inspired by cognitive behavioral therapy (CBT). 
+
+Available as an [Obsidian plugin]([url](https://obsidian.md/plugins?search=chatcbt)). 
 
 ## Demo
 
