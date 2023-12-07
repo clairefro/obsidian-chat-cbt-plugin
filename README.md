@@ -2,7 +2,7 @@
 
 An AI-powered journaling assistant for [Obsidian](https://obsidian.md/), inspired by cognitive behavioral therapy (CBT). 
 
-**Install [here](https://obsidian.md/plugins?search=chatcbt)** 
+**Install(https://obsidian.md/plugins?search=chatcbt)** 
 
 ## Demo
 
