@@ -160,8 +160,9 @@ export default class ChatCbtPlugin extends Plugin {
 
     try {
       new Notice(`Asking ChatCBT... (${this.settings.mode} mode)`);
-      const res = await chatCbt.chat({
-		apiKey: crypt.decrypt(this.settings.openAiApiKey),
+	  const apiKey = this.settings.openAiApiKey ? crypt.decrypt(this.settings.openAiApiKey): ""
+	  const res = await chatCbt.chat({
+		apiKey,
         messages,
 		isSummary,
 		mode: this.settings.mode as Mode,
