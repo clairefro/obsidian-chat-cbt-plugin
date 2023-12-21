@@ -15,6 +15,7 @@ export interface ChatInput {
 	isSummary: boolean | undefined;
 	mode: Mode
 	ollamaUrl: string | undefined
+	model: string | undefined
 }
 
 const SYSTEM_MSG = { role: "system", content: systemPrompt };
@@ -23,7 +24,7 @@ const SUMMARY_MSG = { role: "user", content: summaryPrompt };
 export class ChatCbt {
   constructor() {}
 
-  async chat({ apiKey, messages, isSummary = false, mode = 'openai', ollamaUrl }: ChatInput): Promise<string> {
+  async chat({ apiKey, messages, isSummary = false, mode = 'openai', ollamaUrl, model }: ChatInput): Promise<string> {
 
 
 	const resolvedMsgs = [...messages]
@@ -37,20 +38,20 @@ export class ChatCbt {
     /** validations should be guaranteed from parent layer, based on mode. Re-validating here to appease typescript gods */
     if (mode === 'openai' && !!apiKey) {
 	  const openAiMsgs = [SYSTEM_MSG, ...resolvedMsgs]
-	  response = await this._openai_chat(openAiMsgs, apiKey)
+	  response = await this._openai_chat(openAiMsgs, apiKey, model)
 	} else if (mode === 'ollama' && !!ollamaUrl) {
-	  response = await this._ollama_chat(resolvedMsgs, ollamaUrl)
+	  response = await this._ollama_chat(resolvedMsgs, ollamaUrl, model)
 	}
 
 	
     return response;
   }
 
-  async _openai_chat(messages: Message[], apiKey: string): Promise<string> {
+  async _openai_chat(messages: Message[], apiKey: string, model: string | undefined): Promise<string> {
 	const url = "https://api.openai.com/v1/chat/completions";
 
     const data = {
-		model: "gpt-3.5-turbo",
+		model: model || "gpt-3.5-turbo",
 		messages,
 		temperature: 0.7,
 	  };
@@ -72,11 +73,11 @@ export class ChatCbt {
 	return response.json.choices[0].message.content;
   }
 
-  async _ollama_chat(messages: Message[], ollamaUrl: string): Promise<string> {
+  async _ollama_chat(messages: Message[], ollamaUrl: string, model: string | undefined): Promise<string> {
 	const url = ollamaUrl.replace(/\/$/,"") + "/api/generate"
 
 	const data = {
-		model: "mistral",
+		model: model || "mistral",
 		prompt: JSON.stringify(messages),
 		system: JSON.stringify(SYSTEM_MSG.content),
 		stream: false

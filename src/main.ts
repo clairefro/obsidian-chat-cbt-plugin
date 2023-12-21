@@ -17,6 +17,7 @@ import { buildAssistantMsg, convertTextToMsg } from "./util/messages";
 interface ChatCbtPluginSettings {
   openAiApiKey: string;
   mode: string;
+  model: string;
   ollamaUrl: string;
 }
 interface ChatCbtResponseInput {
@@ -30,6 +31,7 @@ const VALID_MODES = ['openai', 'ollama']
 const DEFAULT_SETTINGS: ChatCbtPluginSettings = {
   openAiApiKey: "",
   mode: "openai",
+  model: "",
   ollamaUrl: "http://0.0.0.0:11434"
 };
 
@@ -167,7 +169,8 @@ export default class ChatCbtPlugin extends Plugin {
         messages,
 		    isSummary,
 		    mode: this.settings.mode as Mode,
-		    ollamaUrl: this.settings.ollamaUrl
+		    ollamaUrl: this.settings.ollamaUrl,
+        model: this.settings.model
 	     });
       response = res;
     } catch (e) {
@@ -238,6 +241,19 @@ class MySettingTab extends PluginSettingTab {
 			}
             await this.plugin.saveSettings();
 			this.plugin.setStatusBarMode(this.plugin.settings.mode as Mode);
+          })
+      );
+
+  new Setting(containerEl)
+      .setName("Mode's Model")
+      .setDesc("For OpenAI mode default is 'gpt-3.5-turbo' model. For Ollama mode default is 'mistral' model.")
+      .addText((text) =>
+        text
+          .setPlaceholder("Enter desirable model")
+          .setValue(this.plugin.settings.model)
+          .onChange(async (value) => {
+            this.plugin.settings.model = value.trim();
+            await this.plugin.saveSettings();
           })
       );
 
