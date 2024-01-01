@@ -154,8 +154,10 @@ export default class ChatCbtPlugin extends Plugin {
       .split(/---+/)
       .map((i) => i.trim())
       .map((i) => convertTextToMsg(i));
-    
-	const loadingModal = new TextModel(this.app, `Asking ChatCBT... (${this.settings.mode} mode, model '${this.settings.model}')`);
+
+	// TODO: refactor
+    const selectedModel = this.settings.model ? this.settings.model : (this.settings.mode === 'openai' ? 'gpt-3.5-turbo' : 'mistral')
+	const loadingModal = new TextModel(this.app, `Asking ChatCBT... (${this.settings.mode} mode, model '${selectedModel}')`);
 	loadingModal.open();
 
     let response = "";
@@ -165,12 +167,12 @@ export default class ChatCbtPlugin extends Plugin {
 
 	    const res = await chatCbt.chat({
 		    apiKey,
-        messages,
+            messages,
 		    isSummary,
 		    mode: this.settings.mode as Mode,
 		    ollamaUrl: this.settings.ollamaUrl,
-        model: this.settings.model
-	     });
+        	model: this.settings.model
+	    });
       response = res;
     } catch (e) {
 	  let msg = e.msg
