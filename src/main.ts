@@ -157,7 +157,7 @@ export default class ChatCbtPlugin extends Plugin {
 
 	// TODO: refactor
     const selectedModel = this.settings.model ? this.settings.model : (this.settings.mode === 'openai' ? 'gpt-3.5-turbo' : 'mistral')
-	const loadingModal = new TextModel(this.app, `Asking ChatCBT... (${this.settings.mode} mode, model '${selectedModel}')`);
+	const loadingModal = new TextModel(this.app, `Asking ChatCBT... (mode: '${this.settings.mode}', model: '${selectedModel}')`);
 	loadingModal.open();
 
     let response = "";
