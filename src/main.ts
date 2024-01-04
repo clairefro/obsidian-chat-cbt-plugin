@@ -162,8 +162,8 @@ export default class ChatCbtPlugin extends Plugin {
 		const selectedModel = this.settings.model
 			? this.settings.model
 			: this.settings.mode === 'openai'
-				? 'gpt-3.5-turbo'
-				: 'mistral';
+			? 'gpt-3.5-turbo'
+			: 'mistral';
 		const loadingModal = new TextModel(
 			this.app,
 			`Asking ChatCBT... (mode: '${this.settings.mode}', model: '${selectedModel}')`,
@@ -262,7 +262,6 @@ class MySettingTab extends PluginSettingTab {
 				toggle
 					.setValue(this.plugin.settings.mode === 'openai' ? false : true)
 					.onChange(async (value) => {
-						console.log({ value });
 						if (value) {
 							this.plugin.settings.mode = 'ollama';
 						} else {
