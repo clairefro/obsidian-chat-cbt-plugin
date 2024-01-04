@@ -21,8 +21,8 @@ interface ChatCbtPluginSettings {
   ollamaUrl: string;
 }
 interface ChatCbtResponseInput {
-	isSummary: boolean;
-	mode: Mode;
+  isSummary: boolean;
+  mode: Mode;
 }
 
 /** Constants */
@@ -154,27 +154,32 @@ export default class ChatCbtPlugin extends Plugin {
       .split(/---+/)
       .map((i) => i.trim())
       .map((i) => convertTextToMsg(i));
-    
-	const loadingModal = new TextModel(this.app, `Asking ChatCBT... (${this.settings.mode} mode)`);
+
+	// TODO: refactor
+    const selectedModel = this.settings.model ? this.settings.model : (this.settings.mode === 'openai' ? 'gpt-3.5-turbo' : 'mistral')
+	const loadingModal = new TextModel(this.app, `Asking ChatCBT... (mode: '${this.settings.mode}', model: '${selectedModel}')`);
 	loadingModal.open();
 
     let response = "";
 
     try {
-      new Notice(`Asking ChatCBT... (${this.settings.mode} mode)`);
 	    const apiKey = this.settings.openAiApiKey ? crypt.decrypt(this.settings.openAiApiKey): "";
 
 	    const res = await chatCbt.chat({
 		    apiKey,
-        messages,
+            messages,
 		    isSummary,
 		    mode: this.settings.mode as Mode,
 		    ollamaUrl: this.settings.ollamaUrl,
-        model: this.settings.model
-	     });
+        	model: this.settings.model
+	    });
       response = res;
     } catch (e) {
-	  new Notice(`ChatCBT failed :(: ${e.message}`);
+	  let msg = e.msg
+	  if(e.status === 404) {
+		msg = `Model named '${this.settings.model}' not found for ${this.settings.mode}. Update mode or model name in settings.`
+	  }
+	  new Notice(`ChatCBT failed :(: ${msg}`);
       console.error(e);
     } finally {
 	  loadingModal.close()
@@ -226,6 +231,9 @@ class MySettingTab extends PluginSettingTab {
           })
       );
 
+	containerEl.createEl('br');
+	containerEl.createEl('br');
+
 	new Setting(containerEl)
       .setName("Ollama mode (local)")
       .setDesc("Toggle on for a local experience if you are running Ollama")
@@ -244,19 +252,6 @@ class MySettingTab extends PluginSettingTab {
           })
       );
 
-  new Setting(containerEl)
-      .setName("Mode's Model")
-      .setDesc("For OpenAI mode default is 'gpt-3.5-turbo' model. For Ollama mode default is 'mistral' model.")
-      .addText((text) =>
-        text
-          .setPlaceholder("Enter desirable model")
-          .setValue(this.plugin.settings.model)
-          .onChange(async (value) => {
-            this.plugin.settings.model = value.trim();
-            await this.plugin.saveSettings();
-          })
-      );
-
 	new Setting(containerEl)
       .setName("Ollama server URL")
       .setDesc("Edit this if you changed the default port for using Ollama")
@@ -269,9 +264,24 @@ class MySettingTab extends PluginSettingTab {
             await this.plugin.saveSettings();
           })
       );
+    
+	containerEl.createEl('br');
+	containerEl.createEl('br');
+
+	new Setting(containerEl)
+      .setName("Model")
+      .setDesc("For OpenAI mode the default is 'gpt-3.5-turbo' model. For Ollama mode the default is 'mistral' model. If you prefer a different model, enter it here. Delete text here to restore defaults")
+      .addText((text) =>
+        text
+          .setPlaceholder("Override model name")
+          .setValue(this.plugin.settings.model)
+          .onChange(async (value) => {
+            this.plugin.settings.model = value.trim();
+            await this.plugin.saveSettings();
+          })
+      );
   }
 }
-
 
 class TextModel extends Modal {
 	text: string
