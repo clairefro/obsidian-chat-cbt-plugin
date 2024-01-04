@@ -1,10 +1,12 @@
 # ChatCBT
 
-An AI-powered journaling assistant for [Obsidian](https://obsidian.md/), inspired by cognitive behavioral therapy (CBT). 
+An AI-powered journaling assistant for [Obsidian](https://obsidian.md/), inspired by cognitive behavioral therapy (CBT).
+
+**[Install](https://obsidian.md/plugins?search=chatcbt)**
 
 ## Demo
 
-ChatCBT is a journaling assitant that prods you to reframe negative thoughts and rewire your reactions to distressful situations ([\*disclaimer](https://github.com/clairefro/obsidian-chat-cbt-plugin#disclaimer)). 
+ChatCBT is a journaling assitant that prods you to reframe negative thoughts and rewire your reactions to distressful situations ([\*disclaimer](https://github.com/clairefro/obsidian-chat-cbt-plugin#disclaimer)).
 
 ### Start chatting in a note
 
@@ -15,10 +17,11 @@ ChatCBT is a journaling assitant that prods you to reframe negative thoughts and
 ![summary-gif](https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/27130199-4398-4861-bef7-924bc9f979d2)
 
 ## Features
+
 - Available any time of day or night
 - Get kind and objective responses to help yourself uncover negative thinking patterns and see situations from healthier angles
-- Conversations are stored privately in local files on your computer 
-- Automatically summarize your reframed thoughts in a table to inspire affirmations. 
+- Conversations are stored privately in local files on your computer
+- Automatically summarize your reframed thoughts in a table to inspire affirmations.
 - Choose how your data is handled: use either a cloud-based AI service (OpenAI), or a 100% local and private service (Ollama).
 - Less than two cents per journal session if using OpenAI, or FREE if using Ollama
 
@@ -26,7 +29,7 @@ ChatCBT is a journaling assitant that prods you to reframe negative thoughts and
 
 To get started using ChatCBT, you need to configure an AI platform connection from the ChatCBT plugin settings menu.
 
-<img width="941" alt="image" src="https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/bbe7a24a-be60-43c4-91ae-c90711ecc7d7">
+<img width="907" alt="image" src="https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/a86e4343-b2ae-4ddb-90c6-cdcb85448eb6">
 
 You have two options:
 
@@ -37,7 +40,9 @@ You have two options:
 
 ### Choosing a model
 
-| Platform                 | Model           | Cost         | Hosting         | Speed   | Quality   |
+ChatCBT defaults to the following models for each platform mode. You can manually override the model in the ChatCBT settings. See available [OpenAI models](https://platform.openai.com/docs/models) (note that some are more costly than others) and [Ollama models](https://ollama.ai/library).
+
+| Platform                 | Default model   | Cost         | Hosting         | Speed   | Quality   |
 | ------------------------ | --------------- | ------------ | --------------- | ------- | --------- |
 | **OpenAI** (recommended) | `gpt-3.5-turbo` | Paid (cheap) | Cloud           | Fast ⚡ | Excellent |
 | **Ollama**               | `mistral`       | Free         | Local (private) | OK      | Good      |
@@ -103,11 +108,11 @@ You can run the "Chat" and "Summarize" commands from the left ribbon menu or the
 
 <img width="777" alt="image" src="https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/ea32ec43-dd9e-4def-87f2-64ee59b9f849">
 
-## Develop 
+## Develop
 
 You can install and enable ChatCBT in developer mode via these steps:
 
-1. In Obsidian, make sure you have [enabled Community Plugins]([url](https://help.obsidian.md/Extending+Obsidian/Plugin+security#Restricted+mode)) 
+1. In Obsidian, make sure you have [enabled Community Plugins](<[url](https://help.obsidian.md/Extending+Obsidian/Plugin+security#Restricted+mode)>)
 2. In your terminal, navigate to the Obsidian vault (directory) on your computer where you'd like to use ChatCBT
 3. `cd .obsidian`
 4. `cd plugins` (if `plugins` directory doesn't exist, create one: `mkdir plugins`, then `cd plugins`)
@@ -116,12 +121,12 @@ You can install and enable ChatCBT in developer mode via these steps:
 7. Run plugin `npm run dev`
 8. Navigate back to Obsidian settings, add ChatCBT plugin and enable it
 9. Follow setup instructions below
-    
+
 ## Disclaimer
 
-ChatCBT is not a replacement for actual therapy or human interaction. Instead, ChatCBT should be thought of as a journaling assistant, similar to an interactive  worksheet. It is a bot that responds with objective questions to your writing help you get out of your head and see your problems from other angles. 
+ChatCBT is not a replacement for actual therapy or human interaction. Instead, ChatCBT should be thought of as a journaling assistant, similar to an interactive worksheet. It is a bot that responds with objective questions to your writing help you get out of your head and see your problems from other angles.
 
-While the bot draws inspiration from general cognitive-behavioral therapy methods, it has not undergone review or approval by licensed therapists. Though I have personally found ChatCBT useful in managing negative thoughts, it's important to note that this bot was built by someone without domain expertise in pyschology. Also note that AI generates unpredictable responses. You are responsible for using your own discretion in determining whether or not this tool is useful for you. Conisder seeking help from a professional therapist. 
+While the bot draws inspiration from general cognitive-behavioral therapy methods, it has not undergone review or approval by licensed therapists. Though I have personally found ChatCBT useful in managing negative thoughts, it's important to note that this bot was built by someone without domain expertise in pyschology. Also note that AI generates unpredictable responses. You are responsible for using your own discretion in determining whether or not this tool is useful for you. Conisder seeking help from a professional therapist.
 
 You can see the exact prompts that the bot is using to generate responses here: [chat](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/system.ts) and [summarize](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/summary.ts).
 
