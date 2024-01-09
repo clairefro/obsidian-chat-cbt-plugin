@@ -108,7 +108,7 @@ You can run the "Chat" and "Summarize" commands from the left ribbon menu or the
 
 <img width="777" alt="image" src="https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/ea32ec43-dd9e-4def-87f2-64ee59b9f849">
 
-## Develop
+## Contributing
 
 You can install and enable ChatCBT in developer mode via these steps:
 
