@@ -51,7 +51,7 @@ ChatCBT defaults to the following models for each platform mode. You can manuall
 
 [OpenAI](https://openai.com/about) provides cloud based AI solutions, including the models that power ChatGPT.
 
-While use of OpenAI costs money, it is cheap (as of Nov 2023). Chat sessions with ChatCBT cost less than a few 2-4 cents.
+While use of OpenAI costs money, it is cheap (as of Nov 2023). Chat sessions with ChatCBT cost less than a few cents.
 
 To use OpenAI with ChatCBT:
 
