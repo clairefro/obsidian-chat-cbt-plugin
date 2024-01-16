@@ -65,6 +65,8 @@ Treat your OpenAI API Keys like a password - do not share this publicly. For you
 
 Note that with the OpenAI option enabled, your messages will be sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy). To minimize chances of association of messages with you personally, I crafted the prompt to respond to a "fictional client". As you can guess, this is not foolproof. Try to stick to your emotions, and avoid disclosing any sensitive personal info like real names of people or your home address.
 
+If you prefer to use a different [Ollama model](https://ollama.ai/library), you can specify in the plugin settings. 
+
 ### Ollama setup
 
 [Ollama](https://ollama.ai/) is a client that allows you to easily run powerful open source LLM models locally on your machine for free.
@@ -87,14 +89,16 @@ Note that with the OpenAI option enabled, your messages will be sent to OpenAI. 
 
 This will start a local server that hosts your Ollama instance locally on your computer from port `11434`. You can change the port if you like by editing the `OLLAMA_HOST` property in step 3 - just be sure to also update the `Ollama URL` in the ChatCBT plugin settings too. The `OLLAMA_ORIGINS='*'` allows Obsidian to talk to Ollama.
 
+If you prefer to use a different [OpenAI model](https://platform.openai.com/docs/models), you can specify in the plugin settings. 
+
 ## Usage
 
 1. Start a new note
 2. Type what's bothering you
 3. Run "Chat" from ChatCBT
-4. You can converse with ChatGPT by adding additional responses at the bottom of the file
-5. Chat enough back and forth to start reframing your negative thoughts
-6. Once you are ready to sum up your conversation, run "Summarize" for create a table outlining your reframed thoughts
+4. You can chat with ChatGPT by adding additional responses at the bottom of the file
+5. Keep chatting to start reframing your negative thoughts
+6. Once you are ready to sum up your conversation, run "Summarize" to create a table outlining your reframed thoughts
 
 ### Running commands
 
