@@ -19,7 +19,7 @@ ChatCBT is a journaling assistant that prods you to reframe negative thoughts an
 ## Features
 
 - Available any time of day or night
-- Get kind and objective responses to help yourself uncover negative thinking patterns and see situations from more other angles to help you move forward
+- Get kind and objective responses to help yourself uncover negative thinking patterns and see situations from other angles to help you move forward
 - Conversations are stored privately in local files on your computer
 - Automatically summarize your reframed thoughts in a table to inspire affirmations.
 - Choose how your data is handled: use either a cloud-based AI service (OpenAI), or a 100% local and private service (Ollama).
