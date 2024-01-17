@@ -96,7 +96,7 @@ If you prefer to use a different [OpenAI model](https://platform.openai.com/docs
 1. Start a new note
 2. Type what's bothering you
 3. Run "Chat" from ChatCBT
-4. You can chat with ChatGPT by adding additional responses at the bottom of the file
+4. Chat with ChatGPT by adding your responses at the bottom of the file
 5. Keep chatting to start reframing your negative thoughts
 6. Once you are ready to sum up your conversation, run "Summarize" to create a table outlining your reframed thoughts
 
