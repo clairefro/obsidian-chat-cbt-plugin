@@ -65,7 +65,7 @@ To use OpenAI with ChatCBT:
 
 Treat your OpenAI API Keys like a password - do not share this publicly. For your safety, your OpenAI API key is encrypted when saving settings.
 
-Note that with the OpenAI option enabled, your messages will be sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy). To minimize chances of association of messages with you personally, I crafted the prompt to respond to a "fictional client". As you can guess, this is not foolproof. Try to stick to your emotions, and avoid disclosing any sensitive personal info like real names of people or your home address.
+Note that with the OpenAI option enabled, your messages will be sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy). To minimize chances of your messages being associated with you personally, I crafted the prompt to respond to a "fictional client" such that it looks like you are creating fake scenarios. As you can guess, this is not foolproof. Try to stick to your emotions, and avoid disclosing any sensitive personal info like real names of people or your home address.
 
 If you prefer to use a different [Ollama model](https://ollama.ai/library), you can specify in the plugin settings. 
 
