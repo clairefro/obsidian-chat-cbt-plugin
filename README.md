@@ -25,6 +25,8 @@ ChatCBT is a journaling assistant that prods you to reframe negative thoughts an
 - Choose how your data is handled: use either a cloud-based AI service (OpenAI), or a 100% local and private service (Ollama).
 - Less than two cents per journal session if using OpenAI, or FREE if using Ollama
 
+You can keep your local conversations and affirmations as a diary, or even share them with a therapist.
+
 ## Setup
 
 To get started using ChatCBT, you need to configure an AI platform connection from the ChatCBT plugin settings menu.
