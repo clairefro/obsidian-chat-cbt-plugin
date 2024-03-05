@@ -58,20 +58,22 @@ While use of OpenAI costs money, it is cheap (as of Nov 2023). Chat sessions wit
 To use OpenAI with ChatCBT:
 
 1. [Create](https://auth0.openai.com/u/signup) an OpenAI account
-2. Add a payment method to your account, and add a small credit (ex: $10 = roughly 500 ChatCBT sessions!) 
+2. Add a payment method to your account, and add a small credit (ex: $10 = roughly 500 ChatCBT sessions!)
 3. Generate an API Key [here](https://platform.openai.com/api-keys) and copy it to your clipboard
 4. Set your OpenAI API Key in ChatCBT plugin settings
-6. Ensure "Ollama mode" is **disabled** in ChatCBT plugin settings
+5. Ensure "Ollama mode" is **disabled** in ChatCBT plugin settings
 
 Treat your OpenAI API Keys like a password - do not share this publicly. For your safety, your OpenAI API key is encrypted when saving settings.
 
 _**Note:** With the OpenAI option enabled, your messages will be sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy). To minimize chances of your messages being associated with you personally, I crafted the prompt to respond to a "fictional client" such that it looks like you are creating fake scenarios. As you can guess, this is not foolproof. Try to stick to your emotions, and avoid disclosing any sensitive personal info like real names of people or your home address._
 
-If you prefer to use a different [Ollama model](https://ollama.ai/library), you can specify in the plugin settings. 
+If you prefer to use a different [Ollama model](https://ollama.ai/library), you can specify in the plugin settings.
 
 ### Ollama setup
 
 [Ollama](https://ollama.ai/) is a client that allows you to easily run powerful open source LLM models locally on your machine for free.
+
+Requires Ollama v0.1.24 or higher
 
 **System requirements**
 
@@ -84,14 +86,14 @@ If you prefer to use a different [Ollama model](https://ollama.ai/library), you 
   - Mistral model: 4GB
 - At least 8GB of RAM, ideally
 
-1. [download ollama](https://ollama.ai/)
+1. [download ollama](https://ollama.ai/) (Get Ollama v0.1.24 or higher)
 2. download `mistral` model: in terminal, run `ollama pull mistral`
 3. Start local server: in terminal, run `OLLAMA_ORIGINS="*" OLLAMA_HOST="0.0.0.0:11434" ollama serve`
 4. Ensure "Ollama mode" is enabled in ChatCBT settings
 
 This will start a local server that hosts your Ollama instance locally on your computer from port `11434`. You can change the port if you like by editing the `OLLAMA_HOST` property in step 3 - just be sure to also update the `Ollama URL` in the ChatCBT plugin settings too. The `OLLAMA_ORIGINS='*'` allows Obsidian to talk to Ollama.
 
-If you prefer to use a different [OpenAI model](https://platform.openai.com/docs/models), you can specify in the plugin settings. 
+If you prefer to use a different [OpenAI model](https://platform.openai.com/docs/models), you can specify in the plugin settings.
 
 ## Usage
 
