@@ -58,7 +58,7 @@ While use of OpenAI costs money, it is cheap (as of Nov 2023). Chat sessions wit
 To use OpenAI with ChatCBT:
 
 1. [Create](https://auth0.openai.com/u/signup) an OpenAI account
-2. Add a payment method to your account, and add a small credit (ex: $10) 
+2. Add a payment method to your account, and add a small credit (ex: $10 = roughly 500 ChatCBT sessions!) 
 3. Generate an API Key [here](https://platform.openai.com/api-keys) and copy it to your clipboard
 4. Set your OpenAI API Key in ChatCBT plugin settings
 6. Ensure "Ollama mode" is **disabled** in ChatCBT plugin settings
