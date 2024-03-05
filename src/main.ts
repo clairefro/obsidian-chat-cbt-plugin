@@ -233,7 +233,9 @@ class MySettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('OpenAI API Key')
-			.setDesc('Create an OpenAI API Key from their website and paste here')
+			.setDesc(
+				'Create an OpenAI API Key from their website and paste here (Make sure you have added credits to your account!)',
+			)
 			.addText((text) =>
 				text
 					.setPlaceholder('Enter your API Key')
@@ -274,7 +276,9 @@ class MySettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('Ollama server URL')
-			.setDesc('Edit this if you changed the default port for using Ollama')
+			.setDesc(
+				'Edit this if you changed the default port for using Ollama. Requires Ollama v0.1.24 or higher.',
+			)
 			.addText((text) =>
 				text
 					.setPlaceholder('ex: http://0.0.0.0:11434')
