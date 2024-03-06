@@ -47,7 +47,7 @@ ChatCBT defaults to the following models for each platform mode. You can manuall
 | Platform                 | Default model   | Cost         | Hosting         | Speed   | Quality   |
 | ------------------------ | --------------- | ------------ | --------------- | ------- | --------- |
 | **OpenAI** (recommended) | `gpt-3.5-turbo` | Paid (cheap) | Cloud           | Fast ⚡ | Excellent |
-| **Ollama**               | `mistral`       | Free         | Local (private) | OK      | Good      |
+| **Ollama**               | `mistral`       | Free         | Local (private) | OK      | Great      |
 
 ### OpenAI setup
 
