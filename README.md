@@ -53,7 +53,7 @@ ChatCBT defaults to the following models for each platform mode. You can manuall
 
 [OpenAI](https://openai.com/about) provides cloud based AI solutions, including the models that power ChatGPT.
 
-While use of OpenAI costs money, it is cheap (as of Nov 2023). Chat sessions with ChatCBT cost less than a few cents.
+While use of OpenAI costs money, it is cheap (as of Mar 2024). Chat sessions with ChatCBT cost less than a few cents.
 
 To use OpenAI with ChatCBT:
 
@@ -67,7 +67,7 @@ Treat your OpenAI API Keys like a password - do not share this publicly. For you
 
 _**Note:** With the OpenAI option enabled, your messages will be sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy). To minimize chances of your messages being associated with you personally, I crafted the prompt to respond to a "fictional client" such that it looks like you are creating fake scenarios. As you can guess, this is not foolproof. Try to stick to your emotions, and avoid disclosing any sensitive personal info like real names of people or your home address._
 
-If you prefer to use a different [Ollama model](https://ollama.ai/library), you can specify in the plugin settings.
+If you prefer to use a different [OpenAI model](https://platform.openai.com/docs/models), you can specify in the plugin settings.
 
 ### Ollama setup
 
@@ -93,7 +93,7 @@ Requires Ollama v0.1.24 or higher
 
 This will start a local server that hosts your Ollama instance locally on your computer from port `11434`. You can change the port if you like by editing the `OLLAMA_HOST` property in step 3 - just be sure to also update the `Ollama URL` in the ChatCBT plugin settings too. The `OLLAMA_ORIGINS='*'` allows Obsidian to talk to Ollama.
 
-If you prefer to use a different [OpenAI model](https://platform.openai.com/docs/models), you can specify in the plugin settings.
+If you prefer to use a different [Ollama model](https://ollama.ai/library), you can specify in the plugin settings.
 
 ## Usage
 
