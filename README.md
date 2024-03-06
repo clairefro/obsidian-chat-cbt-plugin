@@ -89,7 +89,7 @@ Requires Ollama v0.1.24 or higher
 1. [download ollama](https://ollama.ai/) (Get Ollama v0.1.24 or higher)
 2. download `mistral` model: in terminal, run `ollama pull mistral`
 3. Start local server: in terminal, run `OLLAMA_ORIGINS="*" OLLAMA_HOST="0.0.0.0:11434" ollama serve`
-4. Ensure "Ollama mode" is enabled in ChatCBT settings
+4. Ensure "Ollama mode" is **enabled** in ChatCBT settings
 
 This will start a local server that hosts your Ollama instance locally on your computer from port `11434`. You can change the port if you like by editing the `OLLAMA_HOST` property in step 3 - just be sure to also update the `Ollama URL` in the ChatCBT plugin settings too. The `OLLAMA_ORIGINS='*'` allows Obsidian to talk to Ollama.
 
