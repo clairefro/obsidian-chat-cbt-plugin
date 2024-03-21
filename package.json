@@ -1,28 +1,28 @@
 {
-	"name": "obsidian-chat-cbt-plugin",
-	"version": "1.1.3",
-	"description": "Plugin to guide you in reframing negative thoughts and keep an organized record of your findings",
-	"main": "main.js",
-	"scripts": {
-		"dev": "node esbuild.config.mjs",
-		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-		"version": "node version-bump.mjs && git add manifest.json versions.json"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "MIT",
-	"devDependencies": {
-		"@types/inputmask": "^5.0.4",
-		"@types/node": "^16.11.6",
-		"@typescript-eslint/eslint-plugin": "5.29.0",
-		"@typescript-eslint/parser": "5.29.0",
-		"builtin-modules": "3.3.0",
-		"esbuild": "0.17.3",
-		"obsidian": "latest",
-		"tslib": "2.4.0",
-		"typescript": "4.7.4"
-	},
-	"dependencies": {
-		"cryptr": "^6.3.0"
-	}
+  "name": "obsidian-chat-cbt-plugin",
+  "version": "1.1.4",
+  "description": "Plugin to guide you in reframing negative thoughts and keep an organized record of your findings",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+    "version": "node version-bump.mjs && git add manifest.json versions.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/inputmask": "^5.0.4",
+    "@types/node": "^16.11.6",
+    "@typescript-eslint/eslint-plugin": "5.29.0",
+    "@typescript-eslint/parser": "5.29.0",
+    "builtin-modules": "3.3.0",
+    "esbuild": "0.17.3",
+    "obsidian": "latest",
+    "tslib": "2.4.0",
+    "typescript": "4.7.4"
+  },
+  "dependencies": {
+    "cryptr": "^6.3.0"
+  }
 }
