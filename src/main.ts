@@ -13,6 +13,7 @@ import { ChatCbt, Mode } from './util/chatcbt';
 import { buildAssistantMsg, convertTextToMsg } from './util/messages';
 import { platformBasedSecrets } from './util/platformBasedSecrets';
 import { OLLAMA_DEFAULT_MODEL, OPENAI_DEFAULT_MODEL } from './constants';
+import { languages } from './util/languages';
 
 /** Interfaces */
 interface ChatCbtPluginSettings {
@@ -20,7 +21,9 @@ interface ChatCbtPluginSettings {
   mode: string;
   model: string;
   ollamaUrl: string;
+  language: string;
 }
+
 interface ChatCbtResponseInput {
   isSummary: boolean;
   mode: Mode;
@@ -34,6 +37,7 @@ const DEFAULT_SETTINGS: ChatCbtPluginSettings = {
   mode: 'openai',
   model: '',
   ollamaUrl: 'http://0.0.0.0:11434',
+  language: 'English',
 };
 
 /** Initialize chat client */
@@ -175,6 +179,7 @@ export default class ChatCbtPlugin extends Plugin {
         mode: this.settings.mode as Mode,
         ollamaUrl: this.settings.ollamaUrl,
         model: this.settings.model,
+        language: this.settings.language,
       });
       response = res;
     } catch (e) {
@@ -312,6 +317,25 @@ class MySettingTab extends PluginSettingTab {
             await this.plugin.saveSettings();
           }),
       );
+
+    containerEl.createEl('br');
+    containerEl.createEl('br');
+
+    new Setting(containerEl)
+      .setName('Preferred Language (Beta)')
+      .setDesc('For responses from ChatCBT')
+      .addDropdown((dropdown) => {
+        languages.forEach((lang) => {
+          dropdown.addOption(lang.value, lang.label);
+        });
+
+        dropdown
+          .setValue(this.plugin.settings.language || 'English')
+          .onChange(async (value) => {
+            this.plugin.settings.language = value;
+            await this.plugin.saveSettings();
+          });
+      });
   }
 
   private updateModelPlaceholder(containerEl: HTMLElement): void {

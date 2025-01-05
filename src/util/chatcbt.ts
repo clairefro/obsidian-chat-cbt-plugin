@@ -1,6 +1,7 @@
 import { requestUrl } from 'obsidian';
 import systemPrompt from '../prompts/system';
 import summaryPrompt from '../prompts/summary';
+import { OLLAMA_DEFAULT_MODEL, OPENAI_DEFAULT_MODEL } from '../constants';
 
 export interface Message {
   role: string;
@@ -15,10 +16,8 @@ export interface ChatInput {
   mode: Mode;
   ollamaUrl: string | undefined;
   model: string | undefined;
+  language: string;
 }
-
-const SYSTEM_MSG = { role: 'system', content: systemPrompt };
-const SUMMARY_MSG = { role: 'user', content: summaryPrompt };
 
 export class ChatCbt {
   constructor() {}
@@ -30,7 +29,11 @@ export class ChatCbt {
     mode = 'openai',
     ollamaUrl,
     model,
+    language,
   }: ChatInput): Promise<string> {
+    const SYSTEM_MSG = { role: 'system', content: systemPrompt(language) };
+    const SUMMARY_MSG = { role: 'user', content: summaryPrompt(language) };
+
     const resolvedMsgs = [...messages];
 
     if (isSummary) {
@@ -44,14 +47,19 @@ export class ChatCbt {
     /** validations should be guaranteed from parent layer, based on mode. Re-validating here to appease typescript gods */
     if (mode === 'openai' && !!apiKey) {
       const url = 'https://api.openai.com/v1/chat/completions';
-      response = await this._chat(url, msgs, apiKey, model || 'gpt-3.5-turbo');
+      response = await this._chat(
+        url,
+        msgs,
+        apiKey,
+        model || OPENAI_DEFAULT_MODEL,
+      );
     } else if (mode === 'ollama' && !!ollamaUrl) {
       const url = ollamaUrl.replace(/\/$/, '') + '/v1/chat/completions';
       response = await this._chat(
         url,
         msgs,
         'ollama', // default API Key used by Ollama's OpenAI style chat endpoint (v0.1.24^)
-        model || 'mistral',
+        model || OLLAMA_DEFAULT_MODEL,
       );
     }
 
