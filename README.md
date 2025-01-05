@@ -124,7 +124,7 @@ You can run the "Chat" and "Summarize" commands from the left ribbon menu or the
 
 ## Preferred Language (Beta)
 
-Select the language you prefer ChatCBT to repsond in from the Settings. Raise an issue if you run into any quality concerns!
+Select the language you prefer ChatCBT to repsond in from the Settings. Raise an issue if you run into any quality concerns, or would like to request a language!
 
 ![image](https://github.com/user-attachments/assets/22caa3c0-bb34-4569-bfe0-8f6a66f94d56)
 
