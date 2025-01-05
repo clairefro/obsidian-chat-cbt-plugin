@@ -8,12 +8,10 @@ import {
   PluginSettingTab,
   Setting,
   Menu,
-  Platform,
 } from 'obsidian';
-import { crypt } from './util/crypt';
 import { ChatCbt, Mode } from './util/chatcbt';
 import { buildAssistantMsg, convertTextToMsg } from './util/messages';
-import { b64 } from './util/b64';
+import { platformBasedSecrets } from './util/platformBasedSecrets';
 
 /** Interfaces */
 interface ChatCbtPluginSettings {
@@ -166,7 +164,7 @@ export default class ChatCbtPlugin extends Plugin {
 
     try {
       const apiKey = this.settings.openAiApiKey
-        ? crypt.decrypt(this.settings.openAiApiKey)
+        ? platformBasedSecrets.decrypt(this.settings.openAiApiKey)
         : '';
 
       const res = await chatCbt.chat({
@@ -233,14 +231,14 @@ class MySettingTab extends PluginSettingTab {
           .setPlaceholder('Enter your API Key')
           .setValue(
             this.plugin.settings.openAiApiKey
-              ? this.decryptBasedOnPlatform(this.plugin.settings.openAiApiKey)
+              ? platformBasedSecrets.decrypt(this.plugin.settings.openAiApiKey)
               : '',
           )
           .onChange(async (value) => {
             if (!value.trim()) {
               this.plugin.settings.openAiApiKey = '';
             } else {
-              this.plugin.settings.openAiApiKey = this.encryptBasedOnPlatform(
+              this.plugin.settings.openAiApiKey = platformBasedSecrets.encrypt(
                 value.trim(),
               );
             }
@@ -299,31 +297,6 @@ class MySettingTab extends PluginSettingTab {
             await this.plugin.saveSettings();
           }),
       );
-  }
-
-  // Helpers
-  decryptBasedOnPlatform(str: string) {
-    // cryptr requires node runtime and doestn't work on mobile
-    // can't rip out cryptr bc many users already using it on desktop
-    // instead, will use base64 encoding (not as safe, but obfuscates) on mobile
-    if (Platform.isMobile) {
-      return b64.decode(str);
-    } else {
-      // Desktop
-      return crypt.decrypt(str);
-    }
-  }
-
-  encryptBasedOnPlatform(str: string) {
-    // cryptr requires node runtime and doestn't work on mobile
-    // can't rip out cryptr bc many users already using it on desktop
-    // instead, will use base64 encoding (not as safe, but obfuscates) on mobile
-    if (Platform.isMobile) {
-      return b64.encode(str);
-    } else {
-      // Desktop
-      return crypt.encrypt(str);
-    }
   }
 }
 
