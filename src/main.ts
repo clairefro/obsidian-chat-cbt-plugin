@@ -247,6 +247,14 @@ class MySettingTab extends PluginSettingTab {
           }),
       );
 
+    const link = document.createElement('a');
+    link.textContent = 'Get OpenAI API Key';
+    link.href = 'https://platform.openai.com/api-keys';
+    link.target = '_blank';
+    link.style.textDecoration = 'underline';
+
+    containerEl.appendChild(link);
+
     containerEl.createEl('br');
     containerEl.createEl('br');
 
