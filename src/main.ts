@@ -8,10 +8,12 @@ import {
   PluginSettingTab,
   Setting,
   Menu,
+  Platform,
 } from 'obsidian';
 import { crypt } from './util/crypt';
 import { ChatCbt, Mode } from './util/chatcbt';
 import { buildAssistantMsg, convertTextToMsg } from './util/messages';
+import { b64 } from './util/b64';
 
 /** Interfaces */
 interface ChatCbtPluginSettings {
@@ -231,14 +233,16 @@ class MySettingTab extends PluginSettingTab {
           .setPlaceholder('Enter your API Key')
           .setValue(
             this.plugin.settings.openAiApiKey
-              ? crypt.decrypt(this.plugin.settings.openAiApiKey)
+              ? this.decryptBasedOnPlatform(this.plugin.settings.openAiApiKey)
               : '',
           )
           .onChange(async (value) => {
             if (!value.trim()) {
               this.plugin.settings.openAiApiKey = '';
             } else {
-              this.plugin.settings.openAiApiKey = crypt.encrypt(value.trim());
+              this.plugin.settings.openAiApiKey = this.encryptBasedOnPlatform(
+                value.trim(),
+              );
             }
             await this.plugin.saveSettings();
           }),
@@ -295,6 +299,31 @@ class MySettingTab extends PluginSettingTab {
             await this.plugin.saveSettings();
           }),
       );
+  }
+
+  // Helpers
+  decryptBasedOnPlatform(str: string) {
+    // cryptr requires node runtime and doestn't work on mobile
+    // can't rip out cryptr bc many users already using it on desktop
+    // instead, will use base64 encoding (not as safe, but obfuscates) on mobile
+    if (Platform.isMobile) {
+      return b64.decode(str);
+    } else {
+      // Desktop
+      return crypt.decrypt(str);
+    }
+  }
+
+  encryptBasedOnPlatform(str: string) {
+    // cryptr requires node runtime and doestn't work on mobile
+    // can't rip out cryptr bc many users already using it on desktop
+    // instead, will use base64 encoding (not as safe, but obfuscates) on mobile
+    if (Platform.isMobile) {
+      return b64.encode(str);
+    } else {
+      // Desktop
+      return crypt.encrypt(str);
+    }
   }
 }
 
