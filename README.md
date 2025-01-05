@@ -8,6 +8,12 @@ An AI-powered journaling assistant for [Obsidian](https://obsidian.md/), inspire
 
 ChatCBT is a journaling assistant that prods you to reframe negative thoughts and rewire your reactions to distressful situations ([\*disclaimer](https://github.com/clairefro/obsidian-chat-cbt-plugin#disclaimer)).
 
+## Features
+
+- Desktop or Mobile
+- Supports 60+ languages
+- Local or cloud AI models
+
 ### Start chatting in a note
 
 ![chat-gif](https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/3b25b29e-ba86-4d39-b76f-fea17a75fe34)
@@ -115,6 +121,12 @@ You can run the "Chat" and "Summarize" commands from the left ribbon menu or the
 **Command pallete (`cmd` + `p` > search "chat...")**
 
 <img width="777" alt="image" src="https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/ea32ec43-dd9e-4def-87f2-64ee59b9f849">
+
+## Preferred Language (Beta)
+
+Select the language you prefer ChatCBT to repsond in from the Settings. Raise an issue if you run into any quality concerns!
+
+![image](https://github.com/user-attachments/assets/22caa3c0-bb34-4569-bfe0-8f6a66f94d56)
 
 ## Contributing
 
