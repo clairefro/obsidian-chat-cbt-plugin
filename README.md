@@ -44,10 +44,10 @@ You have two options:
 
 ChatCBT defaults to the following models for each platform mode. You can manually override the model in the ChatCBT settings. See available [OpenAI models](https://platform.openai.com/docs/models) (note that some are more costly than others) and [Ollama models](https://ollama.ai/library).
 
-| Platform                 | Default model   | Cost         | Hosting         | Speed   | Quality   |
-| ------------------------ | --------------- | ------------ | --------------- | ------- | --------- |
-| **OpenAI** (recommended) | `gpt-3.5-turbo` | Paid (cheap) | Cloud           | Fast ⚡ | Excellent |
-| **Ollama**               | `mistral`       | Free         | Local (private) | OK      | Great      |
+| Platform                 | Default model | Cost         | Hosting         | Speed   | Quality   |
+| ------------------------ | ------------- | ------------ | --------------- | ------- | --------- |
+| **OpenAI** (recommended) | `gpt-40-mini` | Paid (cheap) | Cloud           | Fast ⚡ | Excellent |
+| **Ollama**               | `mistral`     | Free         | Local (private) | OK      | Great     |
 
 ### OpenAI setup
 

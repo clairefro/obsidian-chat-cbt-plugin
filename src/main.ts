@@ -12,6 +12,7 @@ import {
 import { ChatCbt, Mode } from './util/chatcbt';
 import { buildAssistantMsg, convertTextToMsg } from './util/messages';
 import { platformBasedSecrets } from './util/platformBasedSecrets';
+import { OLLAMA_DEFAULT_MODEL, OPENAI_DEFAULT_MODEL } from './constants';
 
 /** Interfaces */
 interface ChatCbtPluginSettings {
@@ -152,8 +153,8 @@ export default class ChatCbtPlugin extends Plugin {
     const selectedModel = this.settings.model
       ? this.settings.model
       : this.settings.mode === 'openai'
-      ? 'gpt-3.5-turbo'
-      : 'mistral';
+      ? OPENAI_DEFAULT_MODEL
+      : OLLAMA_DEFAULT_MODEL;
     const loadingModal = new TextModel(
       this.app,
       `Asking ChatCBT... (mode: '${this.settings.mode}', model: '${selectedModel}')`,
