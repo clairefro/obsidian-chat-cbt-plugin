@@ -270,6 +270,7 @@ class MySettingTab extends PluginSettingTab {
             } else {
               this.plugin.settings.mode = 'openai';
             }
+            this.updateModelPlaceholder(containerEl);
             await this.plugin.saveSettings();
           }),
       );
@@ -294,18 +295,43 @@ class MySettingTab extends PluginSettingTab {
 
     new Setting(containerEl)
       .setName('Model')
+      .setClass('chat-cbt-model-setting')
       .setDesc(
-        "For OpenAI mode the default is 'gpt-3.5-turbo' model. For Ollama mode the default is 'mistral' model. If you prefer a different model, enter it here. Delete text here to restore defaults",
+        'If you prefer a different model to the default at the right. Delete text restore defaults',
       )
       .addText((text) =>
         text
-          .setPlaceholder('Override model name')
+          .setPlaceholder(
+            this.plugin.settings.mode === 'openai'
+              ? OPENAI_DEFAULT_MODEL
+              : OLLAMA_DEFAULT_MODEL,
+          )
           .setValue(this.plugin.settings.model)
           .onChange(async (value) => {
             this.plugin.settings.model = value.trim();
             await this.plugin.saveSettings();
           }),
       );
+  }
+
+  private updateModelPlaceholder(containerEl: HTMLElement): void {
+    const isOpenAiMode = this.plugin.settings.mode === 'openai';
+    const placeholderText = isOpenAiMode
+      ? OPENAI_DEFAULT_MODEL
+      : OLLAMA_DEFAULT_MODEL;
+
+    // "delay" to force UI update
+    setTimeout(() => {
+      const modelSettingInput = containerEl.querySelector(
+        '.chat-cbt-model-setting input',
+      ) as HTMLInputElement | null;
+
+      if (modelSettingInput) {
+        modelSettingInput.placeholder = placeholderText;
+      } else {
+        console.warn('Model setting input element not found');
+      }
+    }, 0);
   }
 }
 
