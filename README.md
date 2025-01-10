@@ -4,6 +4,8 @@ An AI-powered journaling assistant for [Obsidian](https://obsidian.md/), inspire
 
 **[Install](https://obsidian.md/plugins?search=chatcbt)**
 
+<a href="https://www.buymeacoffee.com/clairefro"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a potato&emoji=🍠&slug=clairefro&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+
 ## Demo
 
 ChatCBT is a journaling assistant that prods you to reframe negative thoughts and rewire your reactions to distressful situations ([\*disclaimer](https://github.com/clairefro/obsidian-chat-cbt-plugin#disclaimer)).
@@ -152,4 +154,4 @@ You can see the prompts that the bot uses to generate responses here: [chat](htt
 
 I'm happy to hear about any issues you encounter with the bot in the Issues tab, or through a DM to `@clairefroe` on Twitter/X.
 
-<a href="https://www.buymeacoffee.com/clairefro"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a potato&emoji=🍠&slug=clairefro&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+
