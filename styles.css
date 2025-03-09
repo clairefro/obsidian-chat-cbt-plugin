@@ -1,8 +1,34 @@
-/*
+.chat-cbt-prompt-setting {
+	margin-bottom: 0;
+	flex-direction: column;
+	align-items: start;
+	gap: 1rem;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.chat-cbt-textarea-container {
+	width: 100%;
+	margin-top: 8px;
+	margin-bottom: 16px;
+}
 
-If your plugin does not need CSS, delete this file.
+.chat-cbt-prompt-textarea {
+	width: 100% !important;
+	min-height: 150px !important;
+	resize: vertical !important;
+	padding: 1rem;
+}
 
-*/
+.chat-cbt-button-container {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 16px;
+}
+
+.chat-cbt-prompt-setting .setting-item-control {
+	width: 100%;
+}
+
+.chat-cbt-reset-button-control {
+	padding: 0;
+}
