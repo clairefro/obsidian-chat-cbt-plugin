@@ -15,6 +15,7 @@ ChatCBT is a journaling assistant that prods you to reframe negative thoughts an
 - Desktop or Mobile
 - Supports 60+ languages
 - Local or cloud AI models
+- Editable prompt
 
 ### Start chatting in a note
 
@@ -31,7 +32,8 @@ ChatCBT is a journaling assistant that prods you to reframe negative thoughts an
 - Conversations are stored privately in local files on your computer
 - Automatically summarize your reframed thoughts in a table to inspire affirmations.
 - Choose how your data is handled: use either a cloud-based AI service (OpenAI), or a 100% local and private service (Ollama).
-- Less than two cents per journal session if using OpenAI, or FREE if using Ollama
+- Less than a penny per journal session if using OpenAI, or FREE if using Ollama
+- Edit the system prompt to your liking (ex: "Speak to me as Carl Jung")
 
 You can keep your local conversations and affirmations as a diary, or even share them with a therapist.
 
@@ -124,6 +126,18 @@ You can run the "Chat" and "Summarize" commands from the left ribbon menu or the
 
 <img width="777" alt="image" src="https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/ea32ec43-dd9e-4def-87f2-64ee59b9f849">
 
+**Slash command**
+
+Enable slash commands from the Obsidian Core Plugins, and you can type `/chat` or `/summarize` inline to access ChatCBT actions in your notes.
+
+## Edit Prompt
+
+You can update the system prompt (or restore it to the default) from Settings.
+
+![edit prompt](./docs/edit-prompt.png)
+
+_The response will honor the Preferred Language setting, regardless of the language of the prompt._
+
 ## Preferred Language (Beta)
 
 Select the language you prefer ChatCBT to repsond in from the Settings. Raise an issue if you run into any quality concerns, or would like to request a language!
@@ -152,6 +166,6 @@ While the bot draws inspiration from general cognitive-behavioral therapy method
 
 You can see the prompts that the bot uses to generate responses here: [chat](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/system.ts) and [summarize](https://github.com/clairefro/obsidian-chat-cbt-plugin/blob/main/src/prompts/summary.ts).
 
+**The creator is not liable for your physical, mental or spiritual health, whether you are using the default prompt or a custom prompt**
+
 I'm happy to hear about any issues you encounter with the bot in the Issues tab, or through a DM to `@clairefroe` on Twitter/X.
-
-
