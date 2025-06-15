@@ -84,7 +84,7 @@ If you prefer to use a different [OpenAI model](https://platform.openai.com/docs
 
 [Deepseek](https://api-docs.deepseek.com/quick_start/pricing) is a cloud AI provider backed by a Chinese research team.
 
-While use of Deepseek costs money, it is cheap (as of June 2-25). Chat sessions with ChatCBT cost less than a few cents.
+While use of Deepseek costs money, it is cheap (as of June 2025). Chat sessions with ChatCBT cost less than a few cents.
 
 To use Deepseek with ChatCBT:
 
