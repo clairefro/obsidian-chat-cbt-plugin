@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-chat-cbt-plugin",
-	"version": "2.0.0",
+	"version": "3.0.0",
 	"description": "Plugin to guide you in reframing negative thoughts and keep an organized record of your findings",
 	"main": "main.js",
 	"scripts": {
