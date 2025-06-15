@@ -41,7 +41,7 @@ You can keep your local conversations and affirmations as a diary, or even share
 
 To get started using ChatCBT, you need to configure an AI platform connection from the ChatCBT plugin settings menu.
 
-<img width="907" alt="image" src="https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/a86e4343-b2ae-4ddb-90c6-cdcb85448eb6">
+<img width="1090" alt="image" src="https://github.com/user-attachments/assets/ed3a5986-b508-4fab-8d8d-1368f6c742ec" />
 
 You have three options:
 
