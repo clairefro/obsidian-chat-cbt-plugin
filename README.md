@@ -164,7 +164,7 @@ _The response will honor the Preferred Language setting, regardless of the langu
 
 Select the language you prefer ChatCBT to repsond in from the Settings. Raise an issue if you run into any quality concerns, or would like to request a language!
 
-![image](https://github.com/user-attachments/assets/22caa3c0-bb34-4569-bfe0-8f6a66f94d56)
+<img width="1091" alt="image" src="https://github.com/user-attachments/assets/9a0022b6-93b9-4b94-82f3-0dd17e1005b0" />
 
 ## Contributing
 
