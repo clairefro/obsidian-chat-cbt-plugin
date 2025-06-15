@@ -59,7 +59,7 @@ ChatCBT defaults to the following models for each platform mode. You can manuall
 | ------------------------ | ------------------ | ------------ | --------------- | ------- | --------- |
 | **OpenAI** (recommended) | `gpt-4o-mini`      | Paid (cheap) | Cloud           | Fast ⚡ | Excellent |
 | **Deepseek**             | `deepseek-chat`    | Paid (cheap) | Cloud           | Fast ⚡ | Excellent |
-| **Ollama**               | (available models) | Free         | Local (private) | OK      | Great     |
+| **Ollama**               | downloaded models | Free         | Local (private) | OK      | Great     |
 
 ### OpenAI setup (Cloud)
 
