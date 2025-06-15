@@ -31,8 +31,8 @@ ChatCBT is a journaling assistant that prods you to reframe negative thoughts an
 - Get kind and objective responses to help yourself uncover negative thinking patterns and see situations from other angles to help you move forward
 - Conversations are stored privately in local files on your computer
 - Automatically summarize your reframed thoughts in a table to inspire affirmations.
-- Choose how your data is handled: use either a cloud-based AI service (OpenAI), or a 100% local and private service (Ollama).
-- Less than a penny per journal session if using OpenAI, or FREE if using Ollama
+- Choose how your data is handled: use either a cloud-based AI service (OpenAI/Deepseek), or a 100% local and private service (Ollama).
+- Less than a penny per journal session if using OpenAI or Deepseek, or FREE if using Ollama
 - Edit the system prompt to your liking (ex: "Speak to me as Carl Jung")
 
 You can keep your local conversations and affirmations as a diary, or even share them with a therapist.
@@ -43,9 +43,10 @@ To get started using ChatCBT, you need to configure an AI platform connection fr
 
 <img width="907" alt="image" src="https://github.com/clairefro/obsidian-chat-cbt-plugin/assets/9841162/a86e4343-b2ae-4ddb-90c6-cdcb85448eb6">
 
-You have two options:
+You have three options:
 
 - **OpenAI** - a paid cloud service
+- **Deepseek** - a paid cloud service
 - **Ollama** - a free local service
 
 **OpenAI** is recommended for conversation quality and speed, with the cavaet that it is a paid service, and that your messages are sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy).
@@ -54,34 +55,53 @@ You have two options:
 
 ChatCBT defaults to the following models for each platform mode. You can manually override the model in the ChatCBT settings. See available [OpenAI models](https://platform.openai.com/docs/models) (note that some are more costly than others) and [Ollama models](https://ollama.ai/library).
 
-| Platform                 | Default model | Cost         | Hosting         | Speed   | Quality   |
-| ------------------------ | ------------- | ------------ | --------------- | ------- | --------- |
-| **OpenAI** (recommended) | `gpt-40-mini` | Paid (cheap) | Cloud           | Fast ⚡ | Excellent |
-| **Ollama**               | `mistral`     | Free         | Local (private) | OK      | Great     |
+| Platform                 | Default model      | Cost         | Hosting         | Speed   | Quality   |
+| ------------------------ | ------------------ | ------------ | --------------- | ------- | --------- |
+| **OpenAI** (recommended) | `gpt-4o-mini`      | Paid (cheap) | Cloud           | Fast ⚡ | Excellent |
+| **Deepseek**             | `deepseek-chat`    | Paid (cheap) | Cloud           | Fast ⚡ | Excellent |
+| **Ollama**               | (available models) | Free         | Local (private) | OK      | Great     |
 
-### OpenAI setup
+### OpenAI setup (Cloud)
 
-[OpenAI](https://openai.com/about) provides cloud based AI solutions, including the models that power ChatGPT.
+[OpenAI](https://openai.com/about) is a cloud AI provider created by a U.S.-based AI research lab backed by Microsoft.
 
-While use of OpenAI costs money, it is cheap (as of Mar 2024). Chat sessions with ChatCBT cost less than a few cents.
+While use of OpenAI costs money, it is cheap (as of June 2025). Chat sessions with ChatCBT cost less than a few cents.
 
 To use OpenAI with ChatCBT:
 
 1. [Create](https://auth0.openai.com/u/signup) an OpenAI account
 2. Add a payment method to your account, and add a small credit (ex: $10 = roughly 500 ChatCBT sessions!)
 3. Generate an API Key [here](https://platform.openai.com/api-keys) and copy it to your clipboard
-4. Set your OpenAI API Key in ChatCBT plugin settings
-5. Ensure "Ollama mode" is **disabled** in ChatCBT plugin settings
+4. Set your OpenAI API Key in ChatCBT plugin settings (visibile when OpenAI provider is selected)
 
 Treat your OpenAI API Keys like a password - do not share this publicly. For your safety, your OpenAI API key is encrypted when saving settings.
 
-_**Note:** With the OpenAI option enabled, your messages will be sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy). To minimize chances of your messages being associated with you personally, I crafted the prompt to respond to a "fictional client" such that it looks like you are creating fake scenarios. As you can guess, this is not foolproof. Try to stick to your emotions, and avoid disclosing any sensitive personal info like real names of people or your home address._
+_**Note:** With the OpenAI option enabled, your messages will be sent to OpenAI. See [OpenAI's data privacy policy](https://openai.com/policies/privacy-policy). To minimize chances of your messages being associated with you personally, I crafted the default prompt to respond to a "fictional client" such that it looks like you are creating fake scenarios. As you can guess, this is not foolproof. Try to stick to your emotions, and avoid disclosing any sensitive personal info like real names of people or your home address._
 
 If you prefer to use a different [OpenAI model](https://platform.openai.com/docs/models), you can specify in the plugin settings.
 
-### Ollama setup
+### Deepseek setup (Cloud)
 
-[Ollama](https://ollama.ai/) is a client that allows you to easily run powerful open source LLM models locally on your machine for free.
+[Deepseek](https://api-docs.deepseek.com/quick_start/pricing) is a cloud AI provider backed by a Chinese research team.
+
+While use of Deepseek costs money, it is cheap (as of June 2-25). Chat sessions with ChatCBT cost less than a few cents.
+
+To use Deepseek with ChatCBT:
+
+1. [Create](https://platform.deepseek.com/sign_up) a Deepseek account
+2. Add a payment method to your account, and add a small credit of a couple dollars
+3. Generate an API Key [here](https://platform.deepseek.com/api_keys) and copy it to your clipboard
+4. Set your Deepseek API Key in ChatCBT plugin settings (visibile when Deepseek provider is selected)
+
+Treat your Deepseek API Keys like a password - do not share this publicly. For your safety, your Deepseek API key is encrypted when saving settings.
+
+_**Note:** With the Deepseek provider enabled, your messages will be sent to Deepseek. See [Deepseeks's data privacy policy](https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html). To minimize chances of your messages being associated with you personally, I crafted the default prompt to respond to a "fictional client" such that it looks like you are creating fake scenarios. As you can guess, this is not foolproof. Try to stick to your emotions, and avoid disclosing any sensitive personal info like real names of people or your home address._
+
+As of June 2025, there are only two available Deepseek chat models: `deepseek-chat` (default, recommended) and `deepseek-reason`.
+
+### Ollama setup (Local and private)
+
+[Ollama](https://ollama.ai/) is a client that allows you to easily run powerful open source LLM models locally on your machine privately for free.
 
 Requires Ollama v0.1.24 or higher
 
@@ -90,18 +110,20 @@ Requires Ollama v0.1.24 or higher
 - Available for:
   - MacOS Big Sur or later
   - Linux
-  - (Windows coming soon, check their site)
-- 4.5GB of storage
+  - Windows
+- 2.5GB of storage (depending on model you choose)
   - Ollama: 500 MB
-  - Mistral model: 4GB
+  - llama2 model (recommended): ~2GB
 - At least 8GB of RAM, ideally
 
 1. [download ollama](https://ollama.ai/) (Get Ollama v0.1.24 or higher)
-2. download `mistral` model: in terminal, run `ollama pull mistral`
-3. Start local server: in terminal, run `OLLAMA_ORIGINS="*" OLLAMA_HOST="0.0.0.0:11434" ollama serve`
-4. Ensure "Ollama mode" is **enabled** in ChatCBT settings
+2. download a [model](https://ollama.com/search) such as `llama2`: in terminal, run `ollama pull llama2`
+3. Start local server. In terminal, run `ollama serve`
+4. Ensure "Ollama" is selected as the AI provider in ChatCBT settings
 
-This will start a local server that hosts your Ollama instance locally on your computer from port `11434`. You can change the port if you like by editing the `OLLAMA_HOST` property in step 3 - just be sure to also update the `Ollama URL` in the ChatCBT plugin settings too. The `OLLAMA_ORIGINS='*'` allows Obsidian to talk to Ollama.
+_(Troubleshooting: if you have trouble getting Ollama to run with Obsidian, stop the Ollama server and try running wtih `OLLAMA_ORIGINS="*" OLLAMA_HOST="0.0.0.0:11434"`)_
+
+This will start a local server that hosts your Ollama instance locally on your computer from port `11434`. For advanced users, you can change the port or url if you like. Just be sure to update the Ollama url in the ChatCBT settings.
 
 If you prefer to use a different [Ollama model](https://ollama.ai/library), you can specify in the plugin settings.
 
