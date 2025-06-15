@@ -345,8 +345,10 @@ class MySettingTab extends PluginSettingTab {
 			);
 
 		const openAiLinkboxEl = document.createElement('div');
-		openAiLinkboxEl.classList =
-			'chat-cbt-provider-setting chat-cbt-openai-setting';
+		openAiLinkboxEl.classList.add(
+			'chat-cbt-provider-setting',
+			'chat-cbt-openai-setting',
+		);
 
 		const link = openAiLinkboxEl.createEl('a');
 		link.textContent = 'Get OpenAI API Key';
@@ -403,15 +405,16 @@ class MySettingTab extends PluginSettingTab {
 			);
 
 		const deepseekLinkboxEl = document.createElement('div');
-		deepseekLinkboxEl.classList =
-			'chat-cbt-provider-setting chat-cbt-deepseek-setting';
+		deepseekLinkboxEl.classList.add(
+			'chat-cbt-provider-setting',
+			'chat-cbt-deepseek-setting',
+		);
 
 		const link2 = deepseekLinkboxEl.createEl('a');
 		link2.textContent = 'Get Deepseek API Key';
 		link2.href = 'https://platform.deepseek.com/api_keys';
 		link2.target = '_blank';
 		link2.style.textDecoration = 'underline';
-		link2.classList = 'chat-cbt-provider-setting chat-cbt-deepseek-setting';
 
 		deepseekLinkboxEl.createEl('br');
 		deepseekLinkboxEl.createEl('br');
@@ -468,8 +471,10 @@ class MySettingTab extends PluginSettingTab {
 			});
 
 		const ollamaLinkboxEl = document.createElement('div');
-		ollamaLinkboxEl.classList =
-			'chat-cbt-provider-setting chat-cbt-ollama-setting';
+		ollamaLinkboxEl.classList.add(
+			'chat-cbt-provider-setting',
+			'chat-cbt-ollama-setting',
+		);
 
 		const ollamaLink = ollamaLinkboxEl.createEl('span');
 		ollamaLink.innerHTML =
