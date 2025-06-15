@@ -156,7 +156,7 @@ Enable slash commands from the Obsidian Core Plugins, and you can type `/chat` o
 
 You can update the system prompt (or restore it to the default) from Settings.
 
-![edit prompt](./docs/edit-prompt.png)
+<img width="1080" alt="image" src="https://github.com/user-attachments/assets/5f18f29f-dfbe-4002-9020-df7fac3dca0a" />
 
 _The response will honor the Preferred Language setting, regardless of the language of the prompt._
 
