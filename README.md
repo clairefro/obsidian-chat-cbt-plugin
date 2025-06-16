@@ -119,7 +119,7 @@ Requires Ollama v0.1.24 or higher
 1. [download ollama](https://ollama.ai/) (Get Ollama v0.1.24 or higher)
 2. download a [model](https://ollama.com/search) such as `llama2`: in terminal, run `ollama pull llama2`
 3. Start local server. In terminal, run `ollama serve`
-4. Ensure "Ollama" is selected as the AI provider in ChatCBT settings
+4. Ensure "Ollama" is selected as the AI provider in ChatCBT settings and you select a downloaded model
 
 _(Troubleshooting: if you have trouble getting Ollama to run with Obsidian, stop the Ollama server and try running wtih `OLLAMA_ORIGINS="*" OLLAMA_HOST="0.0.0.0:11434"`)_
 
